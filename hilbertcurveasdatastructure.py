@@ -36,13 +36,13 @@ def hilbert_nonzero(a,b,n):
         list = create_Hilbert_0(0+a,0+b)
     else:
         list = []
-        list.append(mirror_structure(hilbert_nonzero(a+0,b+0,n-1),0,n))
+        list.append(mirror_structure(hilbert_nonzero(a+0*n,b+0*n,n-1),0,n))
         print("first element in the list: %s  n is: %s" % (list[0], n ))
-        list.append(hilbert_nonzero(a+2,b+0,n-1))
+        list.append(hilbert_nonzero(a+2*n,b+0*n,n-1))
         print("first element in the list: %s  n is: %s" % (list[1], n ))
-        list.append(hilbert_nonzero(a+2,b+2,n-1))
+        list.append(hilbert_nonzero(a+2*n,b+2*n,n-1))
         print("first element in the list: %s  n is: %s" % (list[2], n ))
-        list.append(mirror_structure(hilbert_nonzero(a+0,b+2,n-1),1,n))
+        list.append(mirror_structure(hilbert_nonzero(a+0*n,b+2*n,n-1),1,n))
         print("first element in the list: %s  n is: %s" % (list[3], n ))
     return list
 
@@ -52,4 +52,4 @@ def main(*args):
         marray = hilbert_nonzero(*args)
         print("final one: %s" % marray)
 
-main(0,0,1)
+main(0,0,2)

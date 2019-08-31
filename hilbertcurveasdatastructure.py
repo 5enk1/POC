@@ -3,11 +3,8 @@ class point:
         self.vertical = vertical
         self.horizontal = horizontal
 
-    def __str__(self):
-        return "x:%s y:%s" % (self.vertical, self.horizontal)
-
     def __repr__(self):
-        return str(self)
+        return str("x:%s y:%s" % (self.vertical, self.horizontal))
 
 
 # refactor it as a class i guess

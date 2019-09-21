@@ -8,13 +8,13 @@ class point:
 
 
 # refactor it as a class i guess
-def create_hilbert_0(a, b):
+def create_hilbert_0(a, b,*args,**kvargs):
     hilbert0 = [point(0 + a, 0 + b), point(0 + a, 1 + b), point(1 + a, 1 + b), point(1 + a, 0 + b)]
     return hilbert0
 
 
 # find a way to rotate the first counter clockwise and the last clockwise
-def hilbert_nonzero(a, b, n):
+def hilbert_nonzero(a, b, n,*args,**kvargs):
     if n == 0:
         list_of_hilbert = create_hilbert_0(0 + a, 0 + b)
 
@@ -28,7 +28,15 @@ def hilbert_nonzero(a, b, n):
     return list_of_hilbert
 
 
-def main(*args):
+def rotate90(*args,**kvargs):
+    pass
+
+
+def rotate270(*args,**kvargs):
+    pass
+
+
+def main(*args,**kvargs):
     if __name__ == "__main__":
         marray = hilbert_nonzero(*args)
         print("final one: %s" % marray)

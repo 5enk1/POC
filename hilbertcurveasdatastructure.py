@@ -8,14 +8,15 @@ class point:
 
 
 # refactor it as a class i guess
-def create_Hilbert_0(a, b):
-    Hilbert0 = [point(0 + a, 0 + b), point(1 + a, 0 + b), point(1 + a, 1 + b), point(0 + a, 1 + b)]
-    return Hilbert0
+def create_hilbert_0(a, b):
+    hilbert0 = [point(0 + a, 0 + b), point(1 + a, 0 + b), point(1 + a, 1 + b), point(0 + a, 1 + b)]
+    return hilbert0
+
 
 # find a way to rotate the first counter clockwise and the last clockwise
 def hilbert_nonzero(a, b, n):
     if n == 0:
-        list_of_hilbert = create_Hilbert_0(0 + a, 0 + b)
+        list_of_hilbert = create_hilbert_0(0 + a, 0 + b)
 
     else:
         list_of_hilbert = [

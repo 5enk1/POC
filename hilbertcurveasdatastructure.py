@@ -9,7 +9,7 @@ class point:
 
 # refactor it as a class i guess
 def create_hilbert_0(a, b):
-    hilbert0 = [point(0 + a, 0 + b), point(1 + a, 0 + b), point(1 + a, 1 + b), point(0 + a, 1 + b)]
+    hilbert0 = [point(0 + a, 0 + b), point(0 + a, 1 + b), point(1 + a, 1 + b), point(1 + a, 0 + b)]
     return hilbert0
 
 
@@ -21,9 +21,9 @@ def hilbert_nonzero(a, b, n):
     else:
         list_of_hilbert = [
             hilbert_nonzero(a + 0 * n, b + 0 * n, n - 1),
-            hilbert_nonzero(a + 2 * n, b + 0 * n, n - 1),
+            hilbert_nonzero(a + 0 * n, b + 2 * n, n - 1),
             hilbert_nonzero(a + 2 * n, b + 2 * n, n - 1),
-            hilbert_nonzero(a + 0 * n, b + 2 * n, n - 1)]
+            hilbert_nonzero(a + 2 * n, b + 0 * n, n - 1)]
 
     return list_of_hilbert
 
@@ -34,4 +34,4 @@ def main(*args):
         print("final one: %s" % marray)
 
 
-main(0, 0, 2)
+main(0, 0, 1)

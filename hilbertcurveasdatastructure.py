@@ -22,7 +22,7 @@ def hilbert_nonzero(a, b, n, *args, **kvargs):
 
     else:
         list_of_hilbert = [
-            amiright(hilbert_nonzero(a + 0 * n, b + 0 * n, n - 1)),
+            mirror_first(hilbert_nonzero(a + 0 * n, b + 0 * n, n - 1)),
             hilbert_nonzero(a + 0 * n, b + 2 * n, n - 1),
             hilbert_nonzero(a + 2 * n, b + 2 * n, n - 1),
             hilbert_nonzero(a + 2 * n, b + 0 * n, n - 1)]
@@ -31,18 +31,14 @@ def hilbert_nonzero(a, b, n, *args, **kvargs):
 
 
 # the following should change the x=y y=x that's it nothing harder than this this only need to just do that
-def amiright(maybe_array):
+def mirror_first(maybe_array):
     lista = []
     if isinstance(maybe_array, Iterable):
         for element in maybe_array:
-             lista.append(amiright(element))
+             lista.append(mirror_first(element))
     else:
-        return mirror(maybe_array)
+        return point(maybe_array.horizontal,maybe_array.vertical)
     return lista
-
-
-def mirror(maybe_array):
-    return point(maybe_array.horizontal,maybe_array.vertical)
 
 
 def main(*args, **kvargs):

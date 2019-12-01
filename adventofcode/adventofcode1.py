@@ -11,9 +11,7 @@ def gross_fuel(fuel):
 
 
 def list_of_modules_fuel_calculator(list_of_modules: list):
-    fuel = 0
-    for module in list_of_modules:
-        fuel += gross_fuel(module)
+    fuel =  sum([gross_fuel(module) for module in list_of_modules])
     return fuel
 
 

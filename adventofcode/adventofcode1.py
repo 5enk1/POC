@@ -1,20 +1,16 @@
 import math
 
-def fuel_need_for_module(fuel):
+
+def fuel_calculator(fuel):
     return math.floor((fuel/3))-2
 
 
-def fuel_need_for_fuel(fuel):
+def gross_fuel(fuel):
     fuelfuel=0
-    if (fuel_need_for_module(fuel)>0):
-        fuelfuel=fuel_need_for_module(fuel)+fuel_need_for_fuel(fuel_need_for_module(fuel))
+    x = fuel_calculator(fuel)
+    if (x>0):        
+        fuelfuel=x + gross_fuel(x)
     return fuelfuel
-
-
-def gross_fuel(module):
-    module_fuel = fuel_need_for_module(module)
-    module_fuel_fuel = fuel_need_for_fuel(module_fuel)
-    return module_fuel + module_fuel_fuel
 
 
 def main(list_of_modules: list):
@@ -26,8 +22,8 @@ def main(list_of_modules: list):
 
 def test(fuel):
     # total = fuelcount(fuel) + fuelrec(fuelcount(fuel))
-    print(fuel_need_for_module(fuel))
-    print(fuel_need_for_fuel(fuel_need_for_module(fuel)))
+    print(fuel_calculator(fuel))
+    print(gross_fuel(fuel_calculator(fuel)))
 
 
 if __name__ == "__main__":

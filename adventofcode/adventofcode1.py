@@ -6,7 +6,7 @@ def fuel_need_for_module(fuel):
 
 def fuel_need_for_fuel(fuel):
     fuelfuel=0
-    if (fuel>=6):
+    if (fuel_need_for_module(fuel)>0):
         fuelfuel=fuel_need_for_module(fuel)+fuel_need_for_fuel(fuel_need_for_module(fuel))
     return fuelfuel
 

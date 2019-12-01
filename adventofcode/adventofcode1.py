@@ -5,9 +5,9 @@ def fuel_calculator(fuel):
     return math.floor((fuel/3))-2
 
 
-def gross_fuel(fuel):
-    x = fuel_calculator(fuel)
-    return x + gross_fuel(x) if (x > 0) else 0
+def gross_fuel(weight):
+    fuel = fuel_calculator(weight)
+    return fuel + gross_fuel(fuel) if (fuel > 0) else 0
 
 
 def list_of_modules_fuel_calculator(list_of_modules: list):

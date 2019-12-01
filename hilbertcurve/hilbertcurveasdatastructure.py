@@ -25,12 +25,11 @@ def hilbert_nonzero(a, b, n, *args, **kvargs):
             mirror_first(hilbert_nonzero(a + 0 * n, b + 0 * n, n - 1)),
             hilbert_nonzero(a + 0 * n, b + 2 * n, n - 1),
             hilbert_nonzero(a + 2 * n, b + 2 * n, n - 1),
-            hilbert_nonzero(a + 2 * n, b + 0 * n, n - 1)]
+            mirror_last(hilbert_nonzero(a + 2 * n, b + 0 * n, n - 1))]
 
     return list_of_hilbert
 
 
-# the following should change the x=y y=x that's it nothing harder than this this only need to just do that
 def mirror_first(maybe_array):
     lista = []
     if isinstance(maybe_array, Iterable):
@@ -39,6 +38,17 @@ def mirror_first(maybe_array):
     else:
         return point(maybe_array.horizontal,maybe_array.vertical)
     return lista
+
+
+def mirror_last(maybe_array):
+    listb = []
+    if isinstance(maybe_array, Iterable):
+        for element in maybe_array:
+             listb.append(mirror_last(element))
+    else:
+        # here need to have the logic what will mirror the point UwU (this one just copied)
+        pass
+    return listb
 
 
 def main(*args, **kvargs):

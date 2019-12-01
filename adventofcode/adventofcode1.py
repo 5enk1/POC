@@ -31,4 +31,5 @@ def test(fuel):
     print(fuel_need_for_fuel(fuel_need_for_module(fuel)))
 
 
-main()
+if __name__ == "__main__":
+    main()

@@ -1,37 +1,24 @@
 import copy
-
-
-class opcode():
-    def __init__(self, what_to_do, pos1, pos2, what_to_change):
-        self.what_to_do = what_to_do  # what to do 1 sum 2 mult 99 end
-        self.pos1 = pos1  # pos1
-        self.pos2 = pos2  # pos2
-        self.what_to_change = what_to_change  # where to change
-
-    def __repr__(self):
-        return str("what_to_do:%s pos1:%s pos2:%s what_to_change:%s" % (self.what_to_do, self.pos1, self.pos2, self.what_to_change))
-
+from timeit import timeit
 
 def calculate(noun, verb):
     return 100 * noun + verb
 
 
 def int_code_parser(Intcode: list):
-    def if_one(a, b, c
-               ): Intcode[a] = Intcode[b] + Intcode[c]
-    def if_two(a, b, c
-               ): Intcode[a] = Intcode[b] * Intcode[c]
+    def if_one(where_to_change, pos1, pos2
+               ): Intcode[where_to_change] = Intcode[pos1] + Intcode[pos2]
+    def if_two(where_to_change, pos1, pos2
+               ): Intcode[where_to_change] = Intcode[pos1] * Intcode[pos2]
 
-    def if_anything_else(a, b, c): pass
+    def if_anything_else(where_to_change, pos1, pos2): pass
 
     options = {1: if_one, 2: if_two}
     x = 0
+    # 0+x = operation, 1+x = position1, 2+x = position2, 3+x = where_to_change
     while (Intcode[0+x] != 99):
-        current = opcode(Intcode[0+x], Intcode[1+x],
-                         Intcode[2+x], Intcode[3+x])
-
-        options.get(
-            Intcode[0+x], if_anything_else)(current.what_to_change, current.pos1, current.pos2)
+        options.get(Intcode[0+x], if_anything_else)(Intcode[3+x],
+                                                    Intcode[1+x], Intcode[2+x])
         x += 4
     return(Intcode)
 

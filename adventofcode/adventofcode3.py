@@ -1,5 +1,3 @@
-import substring
-
 class vektor:
     def __init__(self, vektora):
         self.irany = vektora[:1]

@@ -1,3 +1,8 @@
+### TODO
+- add button to add new project
+- add image (firebasse store)
+- add option to update values
+
 # Ani
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.21.

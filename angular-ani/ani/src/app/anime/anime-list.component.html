@@ -11,10 +11,10 @@
       <div class="col-md-6"><h4>filter by:</h4></div>
     </div>
     <div class="table-responsive">
-      <table class="table" *ngIf="animesss && animesss.length">
+      <table class="table" *ngIf="animes && animes.length">
         <thead>
           <tr>
-            <th><button class="btn btn-primary">show image</button></th>
+            <th>img?</th>
             <th>Anime</th>
             <th>Episode</th>
             <th>Season</th>
@@ -22,12 +22,14 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let anime of animesss">
+          <tr *ngFor="let anime of animes">
             <td></td>
-            <td>{{anime.name}}</td>
-            <td>{{anime.episode}}</td>
-            <td>{{anime.season}}</td>
-            <td *ngIf=anime.date>{{anime.date.seconds*1000 | date: 'yyyy-MM-dd'}}</td>
+            <td>{{ anime.name }}</td>
+            <td>{{ anime.episode }}</td>
+            <td>{{ anime.season }}</td>
+            <td *ngIf="anime.date">
+              {{ anime.date.seconds * 1000 | date: "yyyy-MM-dd" }}
+            </td>
           </tr>
         </tbody>
       </table>

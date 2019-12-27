@@ -8,12 +8,11 @@ import { Observable } from "rxjs";
 })
 export class AnimeListComponent {
   title: string = "anime list";
-  animes: Observable<any[]>;
-  animesss: any[] ;
+  animes: any[];
 
   constructor(db: AngularFirestore) {
-     this.animes = db.collection('anime').valueChanges()
-     this.animes.subscribe(awd => this.animesss = awd)
-     console.log(this.animes)
+    db.collection("anime")
+      .valueChanges()
+      .subscribe(anime => (this.animes = anime));
   }
 }

@@ -22,12 +22,12 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let anime of animes">
+          <tr *ngFor="let anime of animesss">
             <td></td>
-            <td>{{ anime.animeName }}</td>
-            <td>{{ anime.episode }}</td>
-            <td>{{ anime.season }}</td>
-            <td>{{ anime.date }}</td>
+            <td>{{anime.name}}</td>
+            <td>{{anime.episode}}</td>
+            <td>{{anime.season}}</td>
+            <td *ngIf=anime.date>{{anime.date.seconds*1000 | date: 'yyyy-MM-dd'}}</td>
           </tr>
         </tbody>
       </table>

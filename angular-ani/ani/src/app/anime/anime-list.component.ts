@@ -1,4 +1,6 @@
 import { Component } from "@angular/core";
+import { AngularFirestore } from "@angular/fire/firestore";
+import { Observable } from "rxjs";
 
 @Component({
   selector: "app-anime-list",
@@ -6,20 +8,12 @@ import { Component } from "@angular/core";
 })
 export class AnimeListComponent {
   title: string = "anime list";
-  animes: any[] = [
-    {
-      img: "",
-      animeName: "test1",
-      episode: 15,
-      season: 2,
-      date: "2019.12.27"
-    },
-    {
-      img: "",
-      animeName: "test2",
-      episode: 15,
-      season: 4,
-      date: "1995.1.5"
-    }
-  ];
+  animes: Observable<any[]>;
+  animesss: any[] ;
+
+  constructor(db: AngularFirestore) {
+     this.animes = db.collection('anime').valueChanges()
+     this.animes.subscribe(awd => this.animesss = awd)
+     console.log(this.animes)
+  }
 }

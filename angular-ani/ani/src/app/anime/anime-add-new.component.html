@@ -1,0 +1,37 @@
+<div>
+  <form [formGroup]="formawd">
+    <div class="col-md-2">
+    <input
+      placeholder="AnimeName"
+      formControlName="AnimeName"
+      type="text"
+    />
+  </div>
+  <div class="col-md-2">
+    <input
+      placeholder="Episode"
+      formControlName="Episode"
+      type="number"
+    />
+    </div>
+    <div class="col-md-2">
+    <input
+      placeholder="Season"
+      formControlName="Season"
+      type="number"
+    />
+    </div>
+    <div class="col-md-2">
+    <input
+      placeholder="Date"
+      formControlName="Date"
+      type="date"
+    />
+    </div>
+    <button class="btn btn-primary"
+    (click)="onSubmit()">
+Submit
+</button>
+  </form>
+
+</div>

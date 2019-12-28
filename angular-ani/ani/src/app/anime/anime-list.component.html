@@ -11,7 +11,7 @@
       <div class="col-md-6"><h4>filter by:</h4></div>
     </div>
     <div class="table-responsive">
-      <table class="table" *ngIf="animes && animes.length">
+      <table class="table">
         <thead>
           <tr>
             <th>img?</th>
@@ -23,13 +23,16 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let anime of animes">
+          <tr *ngFor="let anime of tests2 | async as list">
             <td></td>
-            <td>{{ anime.AnimeName }}</td>
-            <td>{{ anime.Episode }}</td>
-            <td>{{ anime.Season }}</td>
+            <td>{{ anime.payload.doc.data().AnimeName }}</td>
+            <td>{{ anime.payload.doc.data().Episode }}</td>
+            <td>{{ anime.payload.doc.data().Season }}</td>
+            <td>{{ anime.payload.doc.data().Date }}</td>
             <td>
-              {{ anime.Date  }}
+              <button class="btn" (click)="deleteAnime(anime)">
+                <i class="material-icons">delete_forever</i>
+              </button>
             </td>
           </tr>
         </tbody>

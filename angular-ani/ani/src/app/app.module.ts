@@ -8,8 +8,7 @@ import { AngularFirestore } from "@angular/fire/firestore";
 import { AngularFireModule } from "@angular/fire";
 import { ReactiveFormsModule } from "@angular/forms";
 import { environment } from "../environments/environment";
-import { AnimeAddNewComponent } from "./anime/anime-add-new.component";
-import { AddNewSeries, AddNewSeriesDialog } from "./functional/pop-up-component";
+import { AnimeAddNewComponent, AddNewSeriesComponent } from "./anime/anime-add-new.component";
 import { MatDialogModule } from "@angular/material/dialog";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -18,8 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppComponent,
     AnimeListComponent,
     AnimeAddNewComponent,
-    AddNewSeries,
-    AddNewSeriesDialog
+    AddNewSeriesComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +27,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AngularFireModule.initializeApp(environment.firebase),
     ReactiveFormsModule
   ],
-  entryComponents: [AddNewSeriesDialog],
+  entryComponents: [AnimeAddNewComponent],
   providers: [AngularFirestore],
   bootstrap: [AppComponent]
 })

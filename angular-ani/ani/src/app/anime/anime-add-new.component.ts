@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { AngularFirestore } from "@angular/fire/firestore";
 import { FormControl, FormGroup } from "@angular/forms";
-
+import { MatDialog, MAT_DIALOG_DATA } from "@angular/material/dialog";
 
 @Component({
   selector: "app-anime-add-new",
@@ -21,12 +21,27 @@ export class AnimeAddNewComponent {
   });
 
   onSubmit() {
-    let data = this.formawd.value
-    return new Promise<any>((resolve, reject) =>{
-        this.db
-            .collection("anime")
-            .add(data)
-            .then(res => {}, err => reject(err));
+    let data = this.formawd.value;
+    return new Promise<any>((resolve, reject) => {
+      this.db
+        .collection("anime")
+        .add(data)
+        .then(
+          res => {},
+          err => reject(err)
+        );
     });
+  }
 }
+
+@Component({
+  selector: "app-pop-up-add-new-series",
+  templateUrl: "pop-up-component.html"
+})
+export class AddNewSeriesComponent {
+  constructor(public dialog: MatDialog) {}
+  title: string = "add new";
+  openDialog() {
+    this.dialog.open(AnimeAddNewComponent);
+  }
 }

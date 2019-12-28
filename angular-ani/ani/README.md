@@ -1,5 +1,6 @@
 ### TODO
-- add button to add new project
+-add button to add new project-
+- add option to delete
 - add image (firebasse store)
 - add option to update values
 

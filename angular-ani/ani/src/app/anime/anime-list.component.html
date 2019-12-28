@@ -24,11 +24,24 @@
         </thead>
         <tbody>
           <tr *ngFor="let anime of tests2 | async as list">
-            <td></td>
+            <td>
+              <img
+                [src]="anime.payload.doc.data().pictureurl"
+                *ngIf="anime.payload.doc.data().pictureurl"
+              />
+            </td>
             <td>{{ anime.payload.doc.data().AnimeName }}</td>
             <td>{{ anime.payload.doc.data().Episode }}</td>
             <td>{{ anime.payload.doc.data().Season }}</td>
             <td>{{ anime.payload.doc.data().Date }}</td>
+            <!-- <td>
+              <button
+                class="btn btn-primary"
+                (click)="debug(anime.payload.doc.data().AnimeName)"
+              >
+                debug
+              </button>
+            </td> -->
             <td>
               <button class="btn" (click)="deleteAnime(anime)">
                 <i class="material-icons">delete_forever</i>

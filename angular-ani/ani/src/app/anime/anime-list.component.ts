@@ -4,7 +4,8 @@ import { Observable } from "rxjs";
 
 @Component({
   selector: "app-anime-list",
-  templateUrl: "anime-list.component.html"
+  templateUrl: "anime-list.component.html",
+  styleUrls: ["anime-list.component.css"]
 })
 export class AnimeListComponent {
   title = "anime list";
@@ -22,4 +23,6 @@ export class AnimeListComponent {
     console.log(awd.payload.doc.id);
     this.db.collection('anime').doc(awd.payload.doc.id).delete();
   }
+  // debug(awd:any){
+  // }
 }

@@ -1,4 +1,4 @@
 @import "/home/Senki/poc/POC/angular-ani/ani/node_modules/bootstrap/dist/css/bootstrap.min.css";
 @import "/home/Senki/poc/POC/angular-ani/ani/node_modules/font-awesome/css/font-awesome.min.css";
-@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
-@import '/home/Senki/poc/POC/angular-ani/ani/node_modules/material-icons/css/material-icons.min.css';
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import "/home/Senki/poc/POC/angular-ani/ani/node_modules/material-icons/css/material-icons.min.css";

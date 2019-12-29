@@ -103,10 +103,7 @@ export class DialogOpenComponent {
 })
 export class AddImageComponent {
   db: any;
-  constructor(
-    db: AngularFirestore,
-    @Inject(MAT_DIALOG_DATA) public data2
-  ) {
+  constructor(db: AngularFirestore, @Inject(MAT_DIALOG_DATA) public data2) {
     this.db = db;
   }
 

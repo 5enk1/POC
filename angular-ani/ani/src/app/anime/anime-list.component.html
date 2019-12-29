@@ -12,29 +12,22 @@
             <th>Episode</th>
             <th>Season</th>
             <th>Date</th>
-            <th><app-pop-up-add-new-series></app-pop-up-add-new-series></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let anime of animeCollection | async as list">
-            <td >
-              <img [src]="anime.payload.doc.data().pictureurl" *ngIf="anime.payload.doc.data().pictureurl; else uploadbutton"/>
-              <ng-template #uploadbutton>
-
-              </ng-template>
+            <td>
+              <img
+                [src]="anime.payload.doc.data().pictureurl"
+                *ngIf="anime.payload.doc.data().pictureurl; else uploadbutton"
+              />
+              <ng-template #uploadbutton> <app-pop-up-add-image [anime]="anime"></app-pop-up-add-image> </ng-template>
             </td>
             <td>{{ anime.payload.doc.data().AnimeName }}</td>
             <td>{{ anime.payload.doc.data().Episode }}</td>
             <td>{{ anime.payload.doc.data().Season }}</td>
             <td>{{ anime.payload.doc.data().Date }}</td>
-            <!-- <td>
-              <button
-                class="btn btn-primary"
-                (click)="debug(anime.payload.doc.data().AnimeName)"
-              >
-                debug
-              </button>
-            </td> -->
             <td>
               <button class="btn" (click)="deleteAnime(anime)">
                 <i class="material-icons">delete_forever</i>

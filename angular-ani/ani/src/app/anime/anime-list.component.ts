@@ -50,7 +50,7 @@ export class AnimeListComponent {
   }
   seasonChange(anime: DocumentChangeAction<any>, awd) {
     this.updateAnime(anime, {
-      Season: anime.payload.doc.data().Episode - awd
+      Season: anime.payload.doc.data().Season - awd
     });
   }
 }

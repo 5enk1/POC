@@ -1,28 +1,80 @@
-import { Component } from "@angular/core";
-import { AngularFirestore } from "@angular/fire/firestore";
-import { Observable } from "rxjs";
+import { Component } from '@angular/core';
+import {
+  AngularFirestore,
+  DocumentChangeAction
+} from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+import { firestore } from 'firebase';
+import { FormGroup, FormControl } from '@angular/forms';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
-  selector: "app-anime-list",
-  templateUrl: "anime-list.component.html",
-  styleUrls: ["anime-list.component.css"]
+  selector: 'app-anime-list',
+  templateUrl: 'anime-list.component.html',
+  styleUrls: ['anime-list.component.css']
 })
 export class AnimeListComponent {
-  title = "anime list";
-  tests: Observable<any[]>;
-  tests2: any;
-  db: any;
+  title = 'anime list';
+  animeCollection: Observable<DocumentChangeAction<any>[]>;
+  db: AngularFirestore;
 
   constructor(db: AngularFirestore) {
     this.db = db;
-    this.tests = db.collection("anime").valueChanges();
-    this.tests2 = db.collection("anime").snapshotChanges();
+    this.animeCollection = db.collection('anime').snapshotChanges();
   }
 
   deleteAnime(awd: any) {
-    console.log(awd.payload.doc.id);
-    this.db.collection('anime').doc(awd.payload.doc.id).delete();
+    this.db
+      .collection('anime')
+      .doc(awd.payload.doc.id)
+      .delete();
   }
-  // debug(awd:any){
-  // }
+
+  updateAnime(awd: any, awd2: any) {
+    this.db
+      .collection('anime')
+      .doc(awd.payload.doc.id)
+      .update(awd2);
+  }
+}
+@Component({
+  selector: 'app-anime-add-new',
+  templateUrl: 'anime-add-new.component.html'
+})
+export class AnimeAddNewComponent {
+  db: any;
+  constructor(db: AngularFirestore) {
+    this.db = db;
+  }
+
+  formawd = new FormGroup({
+    AnimeName: new FormControl(''),
+    Episode: new FormControl(''),
+    Season: new FormControl(''),
+    Date: new FormControl('')
+  });
+
+  onSubmit() {
+    const data = this.formawd.value;
+    return new Promise<any>((resolve, reject) => {
+      this.db
+        .collection('anime')
+        .add(data)
+        .then(
+          res => {},
+          err => reject(err)
+        );
+    });
+  }
+}
+
+@Component({
+  selector: 'app-pop-up-add-new-series',
+  templateUrl: 'pop-up-component.html'
+})
+export class AddNewSeriesComponent {
+  constructor(public dialog: MatDialog) {}
+  openDialog() {
+    this.dialog.open(AnimeAddNewComponent);
+  }
 }

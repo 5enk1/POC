@@ -22,7 +22,16 @@
             <th>Episode</th>
             <th>Season</th>
             <th>Date</th>
-            <th><app-pop-up-add-new-series></app-pop-up-add-new-series></th>
+            <th>
+              <app-pop-up-add-new-series
+                [stringa]="
+                  !formGroupa.controls['complited'].value
+                    ? 'anime'
+                    : 'anime-complited'
+                "
+              >
+              </app-pop-up-add-new-series>
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -39,7 +48,14 @@
                 *ngIf="anime.payload.doc.data().pictureurl; else uploadbutton"
               />
               <ng-template #uploadbutton>
-                <app-pop-up-add-image [anime]="anime"></app-pop-up-add-image>
+                <app-pop-up-add-image
+                  [anime]="anime"
+                  [collection]="
+                    !formGroupa.controls['complited'].value
+                      ? 'anime'
+                      : 'anime-complited'
+                  "
+                ></app-pop-up-add-image>
               </ng-template>
             </td>
             <td>
@@ -65,7 +81,11 @@
                 <button
                   mat-button
                   class="btn"
-                  (click)="episodeChange(anime, -1)"
+                  (click)="
+                    !formGroupa.controls['complited'].value
+                      ? decrement(anime, 'Episode', 'anime')
+                      : decrement(anime, 'Episode', 'anime-complited')
+                  "
                   *ngIf="anime.payload.doc.data().Episode"
                 >
                   <i class="material-icons">arrow_left</i>
@@ -74,7 +94,11 @@
                 <button
                   mat-button
                   class="btn"
-                  (click)="episodeChange(anime, 1)"
+                  (click)="
+                    !formGroupa.controls['complited'].value
+                      ? episodeChange(anime, 1, 'anime')
+                      : episodeChange(anime, 1, 'anime-complited')
+                  "
                   *ngIf="anime.payload.doc.data().Episode"
                 >
                   <i class="material-icons">arrow_right</i>
@@ -86,7 +110,11 @@
                 <button
                   mat-button
                   class="btn"
-                  (click)="seasonChange(anime, -1)"
+                  (click)="
+                    !formGroupa.controls['complited'].value
+                      ? seasonChange(anime, -1, 'anime')
+                      : seasonChange(anime, -1, 'anime-complited')
+                  "
                   *ngIf="anime.payload.doc.data().Season"
                 >
                   <i class="material-icons">arrow_left</i>
@@ -95,7 +123,11 @@
                 <button
                   mat-button
                   class="btn"
-                  (click)="seasonChange(anime, 1)"
+                  (click)="
+                    !formGroupa.controls['complited'].value
+                      ? seasonChange(anime, 1, 'anime')
+                      : seasonChange(anime, 1, 'anime-complited')
+                  "
                   *ngIf="anime.payload.doc.data().Season"
                 >
                   <i class="material-icons">arrow_right</i>
@@ -118,7 +150,11 @@
               <button
                 mat-button
                 class="btn"
-                (click)="moveToOther(anime, 'anime-complited')"
+                (click)="
+                  !formGroupa.controls['complited'].value
+                    ? moveToOther(anime, 'anime-complited')
+                    : moveToOther(anime, 'anime')
+                "
               >
                 <i class="material-icons">forward</i>
               </button>

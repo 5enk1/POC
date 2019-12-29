@@ -4,7 +4,6 @@ import {
   DocumentChangeAction
 } from "@angular/fire/firestore";
 import { Observable } from "rxjs";
-import { firestore } from "firebase";
 import { FormGroup, FormControl, FormBuilder } from "@angular/forms";
 import {
   MatDialog,
@@ -34,7 +33,7 @@ export class AnimeListComponent {
       .snapshotChanges();
   }
 
-  deleteAnime(awd: DocumentChangeAction<any>, collection: string) {
+  deleteAnime(awd: DocumentChangeAction<any>, collection: any) {
     this.db
       .collection(collection)
       .doc(awd.payload.doc.id)
@@ -43,30 +42,55 @@ export class AnimeListComponent {
 
   moveToOther(anime: DocumentChangeAction<any>, nameOfCollection: string) {
     this.db.collection(nameOfCollection).add(anime.payload.doc.data());
-    // this.db.collection("anime").doc(anime.payload.doc.id).delete();
+    if ((nameOfCollection = "anime")) {
+      this.deleteAnime(anime, "anime-complited");
+    }
+    if ((nameOfCollection = "anime-complited")) {
+      this.deleteAnime(anime, "anime");
+    }
   }
 
-  updateAnime(anime: DocumentChangeAction<any>, awd2: any) {
+  updateAnime(
+    anime: DocumentChangeAction<any>,
+    awd2: any,
+    nameOfCollection: string
+  ) {
     console.log(awd2);
     this.db
-      .collection("anime")
+      .collection(nameOfCollection)
       .doc(anime.payload.doc.id)
       .update(awd2);
   }
 
-  episodeChange(anime: DocumentChangeAction<any>, awd) {
+  episodeChange(
+    anime: DocumentChangeAction<any>,
+    awd,
+    nameOfCollection: string
+  ) {
     if (anime.payload.doc.data().Episode + awd > 0) {
-      this.updateAnime(anime, {
-        Episode: anime.payload.doc.data().Episode + awd
-      });
+      this.updateAnime(
+        anime,
+        {
+          Episode: anime.payload.doc.data().Episode + awd
+        },
+        nameOfCollection
+      );
     }
   }
 
-  seasonChange(anime: DocumentChangeAction<any>, awd) {
+  seasonChange(
+    anime: DocumentChangeAction<any>,
+    awd,
+    nameOfCollection: string
+  ) {
     if (anime.payload.doc.data().Season + awd > 0) {
-      this.updateAnime(anime, {
-        Season: anime.payload.doc.data().Season + awd
-      });
+      this.updateAnime(
+        anime,
+        {
+          Season: anime.payload.doc.data().Season + awd
+        },
+        nameOfCollection
+      );
     }
   }
 }
@@ -79,7 +103,8 @@ export class AnimeAddNewComponent {
   db: any;
   constructor(
     db: AngularFirestore,
-    public dialogRef: MatDialogRef<AddNewSeriesComponent>
+    public dialogRef: MatDialogRef<AddNewSeriesComponent>,
+    @Inject(MAT_DIALOG_DATA) public data2
   ) {
     this.db = db;
   }
@@ -95,7 +120,7 @@ export class AnimeAddNewComponent {
     const data = this.formawd.value;
     return new Promise<any>((resolve, reject) => {
       this.db
-        .collection("anime")
+        .collection(this.data2)
         .add(data)
         .then(
           res => this.dialogRef.close(),
@@ -110,9 +135,12 @@ export class AnimeAddNewComponent {
   templateUrl: "pop-up-component.html"
 })
 export class AddNewSeriesComponent {
+  @Input() public stringa: string;
   constructor(public dialog: MatDialog) {}
   openDialog() {
-    this.dialog.open(AnimeAddNewComponent);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = this.stringa;
+    this.dialog.open(AnimeAddNewComponent, dialogConfig);
   }
 }
 
@@ -121,11 +149,12 @@ export class AddNewSeriesComponent {
   templateUrl: "pop-up-image-component.html"
 })
 export class DialogOpenComponent {
+  @Input() collection: string;
   @Input() anime: any;
   constructor(public dialog: MatDialog) {}
   openDialog() {
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.data = this.anime;
+    dialogConfig.data = { anime: this.anime, collection: this.collection };
     this.dialog.open(AddImageComponent, dialogConfig);
   }
 }
@@ -149,11 +178,11 @@ export class AddImageComponent {
   });
 
   onSubmit() {
-    console.log(this.data2.description);
+    console.log(this.data2.collection);
     const data = this.formpicture.value;
     return new Promise<any>((resolve, reject) => {
       this.db
-        .collection("anime")
+        .collection(this.data2.collection)
         .doc(this.data2.payload.doc.id)
         .update(data)
         .then(

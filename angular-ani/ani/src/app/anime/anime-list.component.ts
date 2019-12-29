@@ -44,16 +44,22 @@ export class AnimeListComponent {
   }
 
   episodeChange(anime: DocumentChangeAction<any>, awd) {
-    this.updateAnime(anime, {
-      Episode: anime.payload.doc.data().Episode + awd
-    });
+    if (anime.payload.doc.data().Episode + awd > 0) {
+      this.updateAnime(anime, {
+        Episode: anime.payload.doc.data().Episode + awd
+      });
+    }
   }
+
   seasonChange(anime: DocumentChangeAction<any>, awd) {
-    this.updateAnime(anime, {
-      Season: anime.payload.doc.data().Season - awd
-    });
+    if (anime.payload.doc.data().Season + awd > 0) {
+      this.updateAnime(anime, {
+        Season: anime.payload.doc.data().Season + awd
+      });
+    }
   }
 }
+
 @Component({
   selector: "app-anime-add-new",
   templateUrl: "anime-add-new.component.html"

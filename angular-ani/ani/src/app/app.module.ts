@@ -18,6 +18,9 @@ import {
 } from "./anime/anime-list.component";
 import { MatDialogModule } from "@angular/material/dialog";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { ClipboardModule } from "ngx-clipboard";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule, MatButtonModule } from "@angular/material";
 
 @NgModule({
   declarations: [
@@ -30,11 +33,15 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
   ],
   imports: [
     BrowserModule,
+    ClipboardModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     MatDialogModule,
     AngularFireModule.initializeApp(environment.firebase),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule
   ],
   entryComponents: [AnimeAddNewComponent, AddImageComponent],
   providers: [AngularFirestore],

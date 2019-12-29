@@ -9,7 +9,8 @@ import { FormGroup, FormControl } from "@angular/forms";
 import {
   MatDialog,
   MAT_DIALOG_DATA,
-  MatDialogConfig
+  MatDialogConfig,
+  MatDialogRef
 } from "@angular/material/dialog";
 
 @Component({
@@ -35,10 +36,22 @@ export class AnimeListComponent {
   }
 
   updateAnime(awd: any, awd2: any) {
+    console.log(awd2);
     this.db
       .collection("anime")
       .doc(awd.payload.doc.id)
       .update(awd2);
+  }
+
+  episodeChange(anime: DocumentChangeAction<any>, awd) {
+    this.updateAnime(anime, {
+      Episode: anime.payload.doc.data().Episode + awd
+    });
+  }
+  seasonChange(anime: DocumentChangeAction<any>, awd) {
+    this.updateAnime(anime, {
+      Season: anime.payload.doc.data().Episode - awd
+    });
   }
 }
 @Component({
@@ -47,7 +60,10 @@ export class AnimeListComponent {
 })
 export class AnimeAddNewComponent {
   db: any;
-  constructor(db: AngularFirestore) {
+  constructor(
+    db: AngularFirestore,
+    public dialogRef: MatDialogRef<AddNewSeriesComponent>
+  ) {
     this.db = db;
   }
 
@@ -65,7 +81,7 @@ export class AnimeAddNewComponent {
         .collection("anime")
         .add(data)
         .then(
-          res => {},
+          res => this.dialogRef.close(),
           err => reject(err)
         );
     });
@@ -103,7 +119,11 @@ export class DialogOpenComponent {
 })
 export class AddImageComponent {
   db: any;
-  constructor(db: AngularFirestore, @Inject(MAT_DIALOG_DATA) public data2) {
+  constructor(
+    db: AngularFirestore,
+    @Inject(MAT_DIALOG_DATA) public data2,
+    public dialogRef: MatDialogRef<DialogOpenComponent>
+  ) {
     this.db = db;
   }
 
@@ -120,7 +140,7 @@ export class AddImageComponent {
         .doc(this.data2.payload.doc.id)
         .update(data)
         .then(
-          res => {},
+          res => this.dialogRef.close(),
           err => reject(err)
         );
     });

@@ -4,15 +4,20 @@
   </div>
   <div class="card-body">
     <div class="table-responsive">
-      <table class="table">
+      <mat-form-field class="example-half-width"
+        >Filter by:<input matInput type="text"
+      /></mat-form-field>
+      <table class="table" style="vertical-align: top;">
         <thead>
           <tr>
             <th>img</th>
-            <th>Anime <input type="text" /></th>
+            <th>
+              Anime
+            </th>
             <th>Episode</th>
             <th>Season</th>
             <th>Date</th>
-            <th></th>
+            <th><app-pop-up-add-new-series></app-pop-up-add-new-series></th>
           </tr>
         </thead>
         <tbody>
@@ -26,9 +31,61 @@
                 <app-pop-up-add-image [anime]="anime"></app-pop-up-add-image>
               </ng-template>
             </td>
-            <td>{{ anime.payload.doc.data().AnimeName }}</td>
-            <td>{{ anime.payload.doc.data().Episode }}</td>
-            <td>{{ anime.payload.doc.data().Season }}</td>
+            <td>
+              {{ anime.payload.doc.data().AnimeName }}
+              <div style="float: right;">
+                <button
+                  *ngIf="anime.payload.doc.data().Episode"
+                  class="btn"
+                  ngxClipboard
+                  [cbContent]="
+                    anime.payload.doc.data().AnimeName +
+                    ' ' +
+                    anime.payload.doc.data().Episode
+                  "
+                >
+                  <i class="material-icons">file_copy</i>
+                </button>
+              </div>
+            </td>
+            <td>
+              <div style="float: left;">
+                <button
+                  class="btn"
+                  (click)="episodeChange(anime, -1)"
+                  *ngIf="anime.payload.doc.data().Episode"
+                >
+                  <i class="material-icons">arrow_left</i>
+                </button>
+                {{ anime.payload.doc.data().Episode }}
+                <button
+                  class="btn"
+                  (click)="episodeChange(anime, 1)"
+                  *ngIf="anime.payload.doc.data().Episode"
+                >
+                  <i class="material-icons">arrow_right</i>
+                </button>
+              </div>
+            </td>
+            <td>
+              <div style="float: left;">
+                <button
+                  class="btn"
+                  (click)="seasonChange(anime, -1)"
+                  *ngIf="anime.payload.doc.data().Season"
+                >
+                  <i class="material-icons">arrow_left</i>
+                </button>
+                {{ anime.payload.doc.data().Season }}
+                <button
+                  class="btn"
+                  (click)="seasonChange(anime, 1)"
+                  *ngIf="anime.payload.doc.data().Season"
+                >
+                  <i class="material-icons">arrow_right</i>
+                </button>
+              </div>
+            </td>
             <td>{{ anime.payload.doc.data().Date }}</td>
             <td>
               <button class="btn" (click)="deleteAnime(anime)">

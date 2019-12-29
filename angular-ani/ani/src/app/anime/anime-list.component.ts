@@ -5,7 +5,7 @@ import {
 } from "@angular/fire/firestore";
 import { Observable } from "rxjs";
 import { firestore } from "firebase";
-import { FormGroup, FormControl } from "@angular/forms";
+import { FormGroup, FormControl, FormBuilder } from "@angular/forms";
 import {
   MatDialog,
   MAT_DIALOG_DATA,
@@ -19,27 +19,38 @@ import {
   styleUrls: ["anime-list.component.css"]
 })
 export class AnimeListComponent {
-  title = "anime list";
+  title = "Anime list";
   animeCollection: Observable<DocumentChangeAction<any>[]>;
+  animeCollectionComplited: Observable<DocumentChangeAction<any>[]>;
   db: AngularFirestore;
+  formGroupa: FormGroup;
 
-  constructor(db: AngularFirestore) {
+  constructor(db: AngularFirestore, formBuilder: FormBuilder) {
+    this.formGroupa = formBuilder.group({ complited: false });
     this.db = db;
     this.animeCollection = db.collection("anime").snapshotChanges();
+    this.animeCollectionComplited = db
+      .collection("anime-complited")
+      .snapshotChanges();
   }
 
-  deleteAnime(awd: any) {
+  deleteAnime(awd: DocumentChangeAction<any>, collection: string) {
     this.db
-      .collection("anime")
+      .collection(collection)
       .doc(awd.payload.doc.id)
       .delete();
   }
 
-  updateAnime(awd: any, awd2: any) {
+  moveToOther(anime: DocumentChangeAction<any>, nameOfCollection: string) {
+    this.db.collection(nameOfCollection).add(anime.payload.doc.data());
+    // this.db.collection("anime").doc(anime.payload.doc.id).delete();
+  }
+
+  updateAnime(anime: DocumentChangeAction<any>, awd2: any) {
     console.log(awd2);
     this.db
       .collection("anime")
-      .doc(awd.payload.doc.id)
+      .doc(anime.payload.doc.id)
       .update(awd2);
   }
 

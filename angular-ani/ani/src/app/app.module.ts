@@ -20,7 +20,11 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ClipboardModule } from "ngx-clipboard";
 import { MatFormFieldModule } from "@angular/material/form-field";
-import { MatInputModule, MatButtonModule } from "@angular/material";
+import {
+  MatInputModule,
+  MatButtonModule,
+  MatSlideToggleModule
+} from "@angular/material";
 
 @NgModule({
   declarations: [
@@ -41,7 +45,8 @@ import { MatInputModule, MatButtonModule } from "@angular/material";
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSlideToggleModule
   ],
   entryComponents: [AnimeAddNewComponent, AddImageComponent],
   providers: [AngularFirestore],

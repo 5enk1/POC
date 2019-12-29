@@ -7,6 +7,11 @@
       <mat-form-field class="example-half-width"
         >Filter by:<input matInput type="text"
       /></mat-form-field>
+      <form [formGroup]="formGroupa">
+        <mat-slide-toggle formControlName="complited"
+          >Complited</mat-slide-toggle
+        >
+      </form>
       <table class="table" style="vertical-align: top;">
         <thead>
           <tr>
@@ -21,7 +26,13 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let anime of animeCollection | async as list">
+          <tr
+            *ngFor="
+              let anime of !formGroupa.controls['complited'].value
+                ? (animeCollection | async)
+                : (animeCollectionComplited | async) as list
+            "
+          >
             <td>
               <img
                 [src]="anime.payload.doc.data().pictureurl"
@@ -93,8 +104,23 @@
             </td>
             <td>{{ anime.payload.doc.data().Date }}</td>
             <td>
-              <button mat-button class="btn" (click)="deleteAnime(anime)">
+              <button
+                mat-button
+                class="btn"
+                (click)="
+                  !formGroupa.controls['complited'].value
+                    ? deleteAnime(anime, 'anime')
+                    : deleteAnime(anime, 'anime-complited')
+                "
+              >
                 <i class="material-icons">delete_forever</i>
+              </button>
+              <button
+                mat-button
+                class="btn"
+                (click)="moveToOther(anime, 'anime-complited')"
+              >
+                <i class="material-icons">forward</i>
               </button>
             </td>
           </tr>

@@ -1,4 +1,22 @@
 <div class="content" role="main">
-  <app-anime-list></app-anime-list>
+  <mat-menu #appMenu="matMenu">
+    <button mat-menu-item *ngIf="isUp(); else loggedout" (click)="signOut()">
+      Log out
+    </button>
+  </mat-menu>
+  <ng-template #loggedout>
+    <button mat-menu-item (click)="auth('test1@test.com', 'password')">
+      Sign in
+    </button>
+    <!-- <button mat-menu-item (click)="signUp('test1@test.com', 'password')">
+      Sign up
+    </button> -->
+  </ng-template>
+  <button mat-flat-button [matMenuTriggerFor]="appMenu">Menu</button>
 </div>
+<app-anime-list *ngIf="isUp(); else fuckoff"></app-anime-list>
+<ng-template #fuckoff
+  ><h1>fuck off</h1>
+  <pop-submit-user></pop-submit-user
+></ng-template>
 <router-outlet></router-outlet>

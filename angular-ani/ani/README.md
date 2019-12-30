@@ -1,6 +1,7 @@
 ### TODO
 
-- add option to episode update values
+- authentication
+- button add 1 if episode value not exist
 - filter
 
 # Ani

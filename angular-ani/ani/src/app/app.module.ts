@@ -2,7 +2,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 
 import { AppRoutingModule } from "./app-routing.module";
-import { AppComponent } from "./app.component";
+import { AppComponent, PopUpSubmitUser, SubmitUser } from "./app.component";
 import {
   AnimeListComponent,
   DialogOpenComponent,
@@ -16,14 +16,15 @@ import {
   AnimeAddNewComponent,
   AddNewSeriesComponent
 } from "./anime/anime-list.component";
-import { MatDialogModule } from "@angular/material/dialog";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ClipboardModule } from "ngx-clipboard";
-import { MatFormFieldModule } from "@angular/material/form-field";
 import {
   MatInputModule,
   MatButtonModule,
-  MatSlideToggleModule
+  MatSlideToggleModule,
+  MatMenuModule,
+  MatFormFieldModule,
+  MatDialogModule
 } from "@angular/material";
 
 @NgModule({
@@ -33,7 +34,9 @@ import {
     AnimeListComponent,
     AnimeAddNewComponent,
     AddNewSeriesComponent,
-    AddImageComponent
+    AddImageComponent,
+    PopUpSubmitUser,
+    SubmitUser
   ],
   imports: [
     BrowserModule,
@@ -46,9 +49,10 @@ import {
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatMenuModule
   ],
-  entryComponents: [AnimeAddNewComponent, AddImageComponent],
+  entryComponents: [AnimeAddNewComponent, AddImageComponent, SubmitUser],
   providers: [AngularFirestore],
   bootstrap: [AppComponent]
 })

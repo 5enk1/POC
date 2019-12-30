@@ -2,7 +2,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 
 import { AppRoutingModule } from "./app-routing.module";
-import { AppComponent, PopUpSubmitUser, SubmitUser } from "./app.component";
+import { AppComponent, SubmitUser } from "./app.component";
 import {
   AnimeListComponent,
   DialogOpenComponent,
@@ -35,7 +35,6 @@ import {
     AnimeAddNewComponent,
     AddNewSeriesComponent,
     AddImageComponent,
-    PopUpSubmitUser,
     SubmitUser
   ],
   imports: [

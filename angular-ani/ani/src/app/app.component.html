@@ -5,7 +5,7 @@
     </button>
   </mat-menu>
   <ng-template #loggedout>
-    <button mat-menu-item (click)="auth('test1@test.com', 'password')">
+    <button mat-menu-item (click)="openDialog()">
       Sign in
     </button>
     <!-- <button mat-menu-item (click)="signUp('test1@test.com', 'password')">
@@ -15,8 +15,5 @@
   <button mat-flat-button [matMenuTriggerFor]="appMenu">Menu</button>
 </div>
 <app-anime-list *ngIf="isUp(); else fuckoff"></app-anime-list>
-<ng-template #fuckoff
-  ><h1>fuck off</h1>
-  <pop-submit-user></pop-submit-user
-></ng-template>
+<ng-template #fuckoff><h1>fuck off</h1></ng-template>
 <router-outlet></router-outlet>

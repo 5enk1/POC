@@ -53,13 +53,7 @@ export class AppComponent {
     console.log(firebase.auth().currentUser);
     return firebase.auth().currentUser;
   }
-}
 
-@Component({
-  selector: "pop-submit-user",
-  templateUrl: "pop-submit-user.component.html"
-})
-export class PopUpSubmitUser {
   constructor(public dialog: MatDialog) {}
   openDialog() {
     const dialogConfig = new MatDialogConfig();
@@ -72,7 +66,7 @@ export class PopUpSubmitUser {
   templateUrl: "submit-user.component.html"
 })
 export class SubmitUser {
-  constructor(public dialogRef: MatDialogRef<PopUpSubmitUser>) {}
+  constructor(public dialogRef: MatDialogRef<AppComponent>) {}
 
   formpUserDetails = new FormGroup({
     userEmail: new FormControl(""),

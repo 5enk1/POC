@@ -83,8 +83,8 @@
                   class="btn"
                   (click)="
                     !formGroupa.controls['complited'].value
-                      ? decrement(anime, 'Episode', 'anime')
-                      : decrement(anime, 'Episode', 'anime-complited')
+                      ? episodeChange(anime, -1, 'anime')
+                      : episodeChange(anime, -1, 'anime-complited')
                   "
                   *ngIf="anime.payload.doc.data().Episode"
                 >

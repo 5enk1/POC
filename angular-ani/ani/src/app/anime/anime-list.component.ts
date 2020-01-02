@@ -62,36 +62,16 @@ export class AnimeListComponent {
       .update(awd2);
   }
 
-  episodeChange(
+  increaseDecrease(
     anime: DocumentChangeAction<any>,
     awd,
+    key,
     nameOfCollection: string
   ) {
-    if (anime.payload.doc.data().Episode + awd > 0) {
-      this.updateAnime(
-        anime,
-        {
-          Episode: anime.payload.doc.data().Episode + awd
-        },
-        nameOfCollection
-      );
-    }
-  }
+    let map = new Object();
+    map[key] = (anime.payload.doc.data()[key] + awd);
+    this.updateAnime(anime, map, nameOfCollection);
 
-  seasonChange(
-    anime: DocumentChangeAction<any>,
-    awd,
-    nameOfCollection: string
-  ) {
-    if (anime.payload.doc.data().Season + awd > 0) {
-      this.updateAnime(
-        anime,
-        {
-          Season: anime.payload.doc.data().Season + awd
-        },
-        nameOfCollection
-      );
-    }
   }
 }
 

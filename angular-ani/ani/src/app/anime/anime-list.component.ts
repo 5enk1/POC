@@ -136,7 +136,7 @@ export class AnimeAddNewComponent {
 })
 export class AddNewSeriesComponent {
   @Input() public stringa: string;
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog) { }
   openDialog() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = this.stringa;
@@ -151,7 +151,7 @@ export class AddNewSeriesComponent {
 export class DialogOpenComponent {
   @Input() collection: string;
   @Input() anime: any;
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog) { }
   openDialog() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = { anime: this.anime, collection: this.collection };

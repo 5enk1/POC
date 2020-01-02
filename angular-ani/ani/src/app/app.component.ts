@@ -19,7 +19,7 @@ export class AppComponent {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .catch(function(error) {
+      .catch(function (error) {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
@@ -31,10 +31,10 @@ export class AppComponent {
     firebase
       .auth()
       .signOut()
-      .then(function() {
+      .then(function () {
         // Sign-out successful.
       })
-      .catch(function(error) {
+      .catch(function (error) {
         // An error happened.
       });
   }
@@ -42,7 +42,7 @@ export class AppComponent {
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
-      .catch(function(error) {
+      .catch(function (error) {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
@@ -54,7 +54,7 @@ export class AppComponent {
     return firebase.auth().currentUser;
   }
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog) { }
   openDialog() {
     const dialogConfig = new MatDialogConfig();
     this.dialog.open(SubmitUser, dialogConfig);
@@ -66,7 +66,7 @@ export class AppComponent {
   templateUrl: "submit-user.component.html"
 })
 export class SubmitUser {
-  constructor(public dialogRef: MatDialogRef<AppComponent>) {}
+  constructor(public dialogRef: MatDialogRef<AppComponent>) { }
 
   formpUserDetails = new FormGroup({
     userEmail: new FormControl(""),
@@ -87,7 +87,7 @@ export class SubmitUser {
           res => this.dialogRef.close(),
           err => reject(err)
         )
-        .catch(function(error) {
+        .catch(function (error) {
           // Handle Errors here.
           var errorCode = error.code;
           var errorMessage = error.message;

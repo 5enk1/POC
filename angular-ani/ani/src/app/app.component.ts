@@ -11,10 +11,11 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  ngOnInit() {
+  constructor(public dialog: MatDialog) {
     firebase.initializeApp(environment.firebase);
   }
   title = 'ani';
+
   auth(email, password) {
     firebase
       .auth()
@@ -53,8 +54,6 @@ export class AppComponent {
     console.log(firebase.auth().currentUser);
     return firebase.auth().currentUser;
   }
-
-  constructor(public dialog: MatDialog) {}
   openDialog() {
     const dialogConfig = new MatDialogConfig();
     this.dialog.open(SubmitUser, dialogConfig);

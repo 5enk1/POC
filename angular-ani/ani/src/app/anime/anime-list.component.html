@@ -80,10 +80,15 @@
                   class="btn"
                   (click)="
                     !formGroupa.controls['complited'].value
-                      ? increaseDecrease(anime, -1,'Episode', 'anime')
-                      : increaseDecrease(anime, -1,'Episode', 'anime-complited')
+                      ? increaseDecrease(anime, -1, 'Episode', 'anime')
+                      : increaseDecrease(
+                          anime,
+                          -1,
+                          'Episode',
+                          'anime-complited'
+                        )
                   "
-                  *ngIf="anime.payload.doc.data().Episode -1 > 0"
+                  *ngIf="anime.payload.doc.data().Episode - 1 > 0"
                 >
                   <i class="material-icons">arrow_left</i>
                 </button>
@@ -93,8 +98,8 @@
                   class="btn"
                   (click)="
                     !formGroupa.controls['complited'].value
-                      ? increaseDecrease(anime, 1,'Episode', 'anime')
-                      : increaseDecrease(anime, 1,'Episode', 'anime-complited')
+                      ? increaseDecrease(anime, 1, 'Episode', 'anime')
+                      : increaseDecrease(anime, 1, 'Episode', 'anime-complited')
                   "
                   *ngIf="anime.payload.doc.data().Episode + 1 > 0"
                 >
@@ -109,8 +114,8 @@
                   class="btn"
                   (click)="
                     !formGroupa.controls['complited'].value
-                      ? increaseDecrease(anime, -1,'Season', 'anime')
-                      : increaseDecrease(anime, -1,'Season', 'anime-complited')
+                      ? increaseDecrease(anime, -1, 'Season', 'anime')
+                      : increaseDecrease(anime, -1, 'Season', 'anime-complited')
                   "
                   *ngIf="anime.payload.doc.data().Season - 1 > 0"
                 >
@@ -122,8 +127,8 @@
                   class="btn"
                   (click)="
                     !formGroupa.controls['complited'].value
-                      ? increaseDecrease(anime, 1,'Season', 'anime')
-                      : increaseDecrease(anime, 1,'Season', 'anime-complited')
+                      ? increaseDecrease(anime, 1, 'Season', 'anime')
+                      : increaseDecrease(anime, 1, 'Season', 'anime-complited')
                   "
                   *ngIf="anime.payload.doc.data().Season + 1 > 0"
                 >

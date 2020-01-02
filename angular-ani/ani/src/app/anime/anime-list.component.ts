@@ -64,14 +64,14 @@ export class AnimeListComponent {
 
   increaseDecrease(
     anime: DocumentChangeAction<any>,
-    awd,
+    changeValue,
     key,
     nameOfCollection: string
   ) {
     let map = new Object();
-    map[key] = (anime.payload.doc.data()[key] + awd);
+    const value: Number = anime.payload.doc.data()[key];
+    map[key] = value + changeValue;
     this.updateAnime(anime, map, nameOfCollection);
-
   }
 }
 
@@ -116,7 +116,7 @@ export class AnimeAddNewComponent {
 })
 export class AddNewSeriesComponent {
   @Input() public stringa: string;
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog) {}
   openDialog() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = this.stringa;
@@ -131,7 +131,7 @@ export class AddNewSeriesComponent {
 export class DialogOpenComponent {
   @Input() collection: string;
   @Input() anime: any;
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog) {}
   openDialog() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = { anime: this.anime, collection: this.collection };

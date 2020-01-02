@@ -1,24 +1,24 @@
-import { Component, Inject, Input } from "@angular/core";
+import { Component, Inject, Input } from '@angular/core';
 import {
   AngularFirestore,
   DocumentChangeAction
-} from "@angular/fire/firestore";
-import { Observable } from "rxjs";
-import { FormGroup, FormControl, FormBuilder } from "@angular/forms";
+} from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import {
   MatDialog,
   MAT_DIALOG_DATA,
   MatDialogConfig,
   MatDialogRef
-} from "@angular/material/dialog";
+} from '@angular/material/dialog';
 
 @Component({
-  selector: "app-anime-list",
-  templateUrl: "anime-list.component.html",
-  styleUrls: ["anime-list.component.css"]
+  selector: 'app-anime-list',
+  templateUrl: 'anime-list.component.html',
+  styleUrls: ['anime-list.component.css']
 })
 export class AnimeListComponent {
-  title = "Anime list";
+  title = 'Anime list';
   animeCollection: Observable<DocumentChangeAction<any>[]>;
   animeCollectionComplited: Observable<DocumentChangeAction<any>[]>;
   db: AngularFirestore;
@@ -27,9 +27,9 @@ export class AnimeListComponent {
   constructor(db: AngularFirestore, formBuilder: FormBuilder) {
     this.formGroupa = formBuilder.group({ complited: false });
     this.db = db;
-    this.animeCollection = db.collection("anime").snapshotChanges();
+    this.animeCollection = db.collection('anime').snapshotChanges();
     this.animeCollectionComplited = db
-      .collection("anime-complited")
+      .collection('anime-complited')
       .snapshotChanges();
   }
 
@@ -42,11 +42,11 @@ export class AnimeListComponent {
 
   moveToOther(anime: DocumentChangeAction<any>, nameOfCollection: string) {
     this.db.collection(nameOfCollection).add(anime.payload.doc.data());
-    if ((nameOfCollection = "anime")) {
-      this.deleteAnime(anime, "anime-complited");
+    if ((nameOfCollection = 'anime')) {
+      this.deleteAnime(anime, 'anime-complited');
     }
-    if ((nameOfCollection = "anime-complited")) {
-      this.deleteAnime(anime, "anime");
+    if ((nameOfCollection = 'anime-complited')) {
+      this.deleteAnime(anime, 'anime');
     }
   }
 
@@ -76,8 +76,8 @@ export class AnimeListComponent {
 }
 
 @Component({
-  selector: "app-anime-add-new",
-  templateUrl: "anime-add-new.component.html"
+  selector: 'app-anime-add-new',
+  templateUrl: 'anime-add-new.component.html'
 })
 export class AnimeAddNewComponent {
   db: any;
@@ -90,10 +90,10 @@ export class AnimeAddNewComponent {
   }
 
   formawd = new FormGroup({
-    AnimeName: new FormControl(""),
-    Episode: new FormControl(""),
-    Season: new FormControl(""),
-    Date: new FormControl("")
+    AnimeName: new FormControl(''),
+    Episode: new FormControl(''),
+    Season: new FormControl(''),
+    Date: new FormControl('')
   });
 
   onSubmit() {
@@ -111,8 +111,8 @@ export class AnimeAddNewComponent {
 }
 
 @Component({
-  selector: "app-pop-up-add-new-series",
-  templateUrl: "pop-up-component.html"
+  selector: 'app-pop-up-add-new-series',
+  templateUrl: 'pop-up-component.html'
 })
 export class AddNewSeriesComponent {
   @Input() public stringa: string;
@@ -125,8 +125,8 @@ export class AddNewSeriesComponent {
 }
 
 @Component({
-  selector: "app-pop-up-add-image",
-  templateUrl: "pop-up-image-component.html"
+  selector: 'app-pop-up-add-image',
+  templateUrl: 'pop-up-image-component.html'
 })
 export class DialogOpenComponent {
   @Input() collection: string;
@@ -140,8 +140,8 @@ export class DialogOpenComponent {
 }
 
 @Component({
-  selector: "app-anime-add-image",
-  templateUrl: "anime-add-image.component.html"
+  selector: 'app-anime-add-image',
+  templateUrl: 'anime-add-image.component.html'
 })
 export class AddImageComponent {
   db: any;
@@ -154,7 +154,7 @@ export class AddImageComponent {
   }
 
   formpicture = new FormGroup({
-    pictureurl: new FormControl("")
+    pictureurl: new FormControl('')
   });
 
   onSubmit() {

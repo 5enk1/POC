@@ -1,20 +1,20 @@
-import { Component } from "@angular/core";
-import * as firebase from "firebase";
-import { AngularFireModule } from "@angular/fire";
-import { environment } from "src/environments/environment";
-import { MatDialogConfig, MatDialog, MatDialogRef } from "@angular/material";
-import { FormGroup, FormControl } from "@angular/forms";
+import { Component } from '@angular/core';
+import * as firebase from 'firebase';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from 'src/environments/environment';
+import { MatDialogConfig, MatDialog, MatDialogRef } from '@angular/material';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.css"]
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   ngOnInit() {
     firebase.initializeApp(environment.firebase);
   }
-  title = "ani";
+  title = 'ani';
   auth(email, password) {
     firebase
       .auth()
@@ -62,15 +62,15 @@ export class AppComponent {
 }
 
 @Component({
-  selector: "submit-user",
-  templateUrl: "submit-user.component.html"
+  selector: 'submit-user',
+  templateUrl: 'submit-user.component.html'
 })
 export class SubmitUser {
   constructor(public dialogRef: MatDialogRef<AppComponent>) {}
 
   formpUserDetails = new FormGroup({
-    userEmail: new FormControl(""),
-    userPassword: new FormControl("")
+    userEmail: new FormControl(''),
+    userPassword: new FormControl('')
   });
 
   onSubmit() {

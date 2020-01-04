@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AnimeProviderService } from 'src/app/services/anime-provider.service';
 import { Anime } from 'src/app/models/anime';
-import { DocumentChangeAction } from '@angular/fire/firestore';
-import { Observable } from 'rxjs/internal/Observable';
 
 @Component({
   selector: 'app-anime-list',
@@ -10,10 +8,15 @@ import { Observable } from 'rxjs/internal/Observable';
   styleUrls: ['./anime-list.component.css']
 })
 export class AnimeListComponent {
-  animeList: Observable<Anime[]>;
+  animeList: Anime[];
+
   constructor(private animeProvider: AnimeProviderService) {
-    this.animeList = animeProvider.getSeries();
-    this.animeList.subscribe(anime => console.log(anime));
+    animeProvider.getSeries().subscribe(
+      anime =>
+        (this.animeList = anime.map(a => {
+          return a.payload.doc.data() as Anime;
+        }))
+    );
   }
   displayedColumns: string[] = ['pictureurl', 'Name', 'Episode', 'Season'];
 }

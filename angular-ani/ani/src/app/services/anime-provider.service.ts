@@ -4,7 +4,6 @@ import {
   AngularFirestore
 } from '@angular/fire/firestore';
 import { Anime } from '../models/anime';
-import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -16,7 +15,7 @@ export class AnimeProviderService {
     this.db = db;
   }
 
-  getSeries(): Observable<Anime[]> {
-    return this.db.collection<Anime>('anime').valueChanges();
+  getSeries(): Observable<DocumentChangeAction<Anime>[]> {
+    return this.db.collection<Anime>('anime').snapshotChanges();
   }
 }

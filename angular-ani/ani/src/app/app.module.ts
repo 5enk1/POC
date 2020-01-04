@@ -9,9 +9,10 @@ import { AppComponent } from './app.component';
 import { MaterialModule } from './shared/modules/material.module';
 import { FirebaseModule } from './shared/modules/firebase.module';
 import { AnimeListComponent } from './components/anime-list/anime-list.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
-  declarations: [AppComponent, AnimeListComponent],
+  declarations: [AppComponent, AnimeListComponent, HeaderComponent],
   imports: [
     BrowserModule,
     ClipboardModule,

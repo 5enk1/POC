@@ -1,57 +1,28 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent, SubmitUser } from './app.component';
-import {
-  AnimeListComponent,
-  DialogOpenComponent,
-  AddImageComponent
-} from './anime/anime-list.component';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire';
 import { ReactiveFormsModule } from '@angular/forms';
 import { environment } from '../environments/environment';
-import {
-  AnimeAddNewComponent,
-  AddNewSeriesComponent
-} from './anime/anime-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClipboardModule } from 'ngx-clipboard';
-import {
-  MatInputModule,
-  MatButtonModule,
-  MatSlideToggleModule,
-  MatMenuModule,
-  MatFormFieldModule,
-  MatDialogModule
-} from '@angular/material';
+import { AppComponent } from './app.component';
+import { MaterialModule } from './shared/modules/material.module';
+import { FirebaseModule } from './shared/modules/firebase.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    DialogOpenComponent,
-    AnimeListComponent,
-    AnimeAddNewComponent,
-    AddNewSeriesComponent,
-    AddImageComponent,
-    SubmitUser
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     ClipboardModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    MatDialogModule,
-    AngularFireModule.initializeApp(environment.firebase),
     ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatSlideToggleModule,
-    MatMenuModule
+    FirebaseModule,
+    MaterialModule
   ],
-  entryComponents: [AnimeAddNewComponent, AddImageComponent, SubmitUser],
+  entryComponents: [],
   providers: [AngularFirestore],
   bootstrap: [AppComponent]
 })

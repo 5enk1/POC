@@ -1,7 +1,10 @@
 ### TODO
 
-- authentication
 - button add 1 if episode value not exist
+- add button for move to complete
+- sign up
+- welcome page if user is not authenticated
+- not create again
 - filter
 
 # Ani

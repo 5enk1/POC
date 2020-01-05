@@ -1,0 +1,15 @@
+<mat-menu #appMenu="matMenu">
+  <button
+    mat-menu-item
+    *ngIf="auth.user$ | async; else loggedout"
+    (click)="auth.signOut()"
+  >
+    Log out
+  </button>
+</mat-menu>
+<ng-template #loggedout>
+  <button mat-menu-item (click)="openDialog()">
+    Sign in
+  </button>
+</ng-template>
+<button mat-flat-button [matMenuTriggerFor]="appMenu">Menu</button>

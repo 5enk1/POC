@@ -3,7 +3,11 @@
     <ng-container matColumnDef="pictureurl">
       <th mat-header-cell *matHeaderCellDef>img</th>
       <td mat-cell *matCellDef="let element">
-        <img mat-card-image [src]="element.pictureurl" />
+        <img
+          mat-card-image
+          [src]="element.pictureurl"
+          *ngIf="element.pictureurl"
+        />
       </td>
     </ng-container>
     <ng-container matColumnDef="Name">
@@ -12,11 +16,29 @@
     </ng-container>
     <ng-container matColumnDef="Episode">
       <th mat-header-cell *matHeaderCellDef>Episode</th>
-      <td mat-cell *matCellDef="let element">{{ element.Episode }}</td>
+      <td mat-cell *matCellDef="let element">
+        <app-increase-decrease
+          [anime]="element"
+          [key]="'Episode'"
+        ></app-increase-decrease>
+      </td>
     </ng-container>
     <ng-container matColumnDef="Season">
       <th mat-header-cell *matHeaderCellDef>Season</th>
-      <td mat-cell *matCellDef="let element">{{ element.Season }}</td>
+      <td mat-cell *matCellDef="let element">
+        <app-increase-decrease
+          [anime]="element"
+          [key]="'Season'"
+        ></app-increase-decrease>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="Functions">
+      <th mat-header-cell *matHeaderCellDef>
+        <app-add-new-anime></app-add-new-anime>
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <app-remove-from-list [anime]="element"></app-remove-from-list>
+      </td>
     </ng-container>
   </tr>
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

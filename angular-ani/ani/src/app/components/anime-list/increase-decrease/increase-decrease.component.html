@@ -1,0 +1,19 @@
+<button
+  mat-button
+  class="btn"
+  *ngIf="anime[key]"
+  (click)="increaseDecrease(anime, -1, key)"
+  [disabled]="anime[key] - 1 <= 0"
+>
+  <i class="material-icons">arrow_left</i>
+</button>
+{{ anime[key] }}
+<button
+  mat-button
+  class="btn"
+  *ngIf="anime[key] && anime[key] + 1 > 0"
+  (click)="increaseDecrease(anime, 1, key)"
+  [disabled]="anime[key] + 1 <= 0"
+>
+  <i class="material-icons">arrow_right</i>
+</button>

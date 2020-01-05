@@ -1,7 +1,9 @@
 export class Anime {
-  AnimeName: String;
-  Episode: Number;
-  Season: Number;
+  AnimeName: string;
+  Episode: number;
+  Season: number;
   Date: Date;
-  pictureurl: String;
+  Complited: boolean;
+  pictureurl: string;
+  id: string;
 }

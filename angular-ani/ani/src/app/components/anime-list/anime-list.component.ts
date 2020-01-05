@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AnimeProviderService } from 'src/app/services/anime-provider.service';
 import { Anime } from 'src/app/models/anime';
+import { auth } from 'firebase';
 
 @Component({
   selector: 'app-anime-list',
@@ -14,9 +15,18 @@ export class AnimeListComponent {
     animeProvider.getSeries().subscribe(
       anime =>
         (this.animeList = anime.map(a => {
-          return a.payload.doc.data() as Anime;
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+          return { id, ...data } as Anime;
         }))
     );
   }
-  displayedColumns: string[] = ['pictureurl', 'Name', 'Episode', 'Season'];
+
+  displayedColumns: string[] = [
+    'pictureurl',
+    'Name',
+    'Episode',
+    'Season',
+    'Functions'
+  ];
 }

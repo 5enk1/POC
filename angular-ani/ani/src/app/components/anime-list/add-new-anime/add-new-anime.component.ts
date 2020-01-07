@@ -41,7 +41,8 @@ export class AnimeAddNewComponent {
     Episode: new FormControl(''),
     Season: new FormControl(''),
     Date: new FormControl(''),
-    Complited: new FormControl('')
+    Complited: new FormControl(true),
+    PictureUrl: new FormControl('')
   });
 
   onSubmit() {

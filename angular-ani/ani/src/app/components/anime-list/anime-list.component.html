@@ -1,12 +1,17 @@
-<table mat-table [dataSource]="animeList" class="mat-elevation-z8">
+<table
+  mat-table
+  [dataSource]="animeList"
+  class="mat-elevation-z8"
+  [trackBy]="trackById"
+>
   <tr>
     <ng-container matColumnDef="pictureurl">
       <th mat-header-cell *matHeaderCellDef>img</th>
       <td mat-cell *matCellDef="let element">
         <img
           mat-card-image
-          [src]="element.pictureurl"
-          *ngIf="element.pictureurl"
+          [src]="element.PictureUrl"
+          *ngIf="element.PictureUrl"
         />
       </td>
     </ng-container>
@@ -38,6 +43,7 @@
       </th>
       <td mat-cell *matCellDef="let element">
         <app-remove-from-list [anime]="element"></app-remove-from-list>
+        <app-move-to-other-list [anime]="element"></app-move-to-other-list>
       </td>
     </ng-container>
   </tr>

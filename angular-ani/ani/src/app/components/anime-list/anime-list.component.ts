@@ -21,7 +21,6 @@ export class AnimeListComponent {
         }))
     );
   }
-
   displayedColumns: string[] = [
     'pictureurl',
     'Name',
@@ -29,4 +28,10 @@ export class AnimeListComponent {
     'Season',
     'Functions'
   ];
+
+  trackById(index, item) {
+    return item;
+
+    //console.log(index, item);
+  }
 }

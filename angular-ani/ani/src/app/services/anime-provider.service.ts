@@ -1,7 +1,8 @@
 import { Injectable, Component } from '@angular/core';
 import {
   DocumentChangeAction,
-  AngularFirestore
+  AngularFirestore,
+  AngularFirestoreCollection
 } from '@angular/fire/firestore';
 import { Anime } from '../models/anime';
 import { Observable, BehaviorSubject } from 'rxjs';
@@ -14,55 +15,51 @@ import { AuthService } from './auth.service';
 export class AnimeProviderService {
   db: AngularFirestore;
   authService: AuthService;
-  uuid: firebase.User;
   docId: any[];
   public complited: boolean;
-  public test111$: BehaviorSubject<any>;
-  snapShotChanges$: any;
+  public listToShow$: BehaviorSubject<boolean>;
+  snapShotChanges$: Observable<DocumentChangeAction<Anime>[]>;
+  stringToQuery: string;
+  fullList: AngularFirestoreCollection<unknown>;
+
   constructor(db: AngularFirestore, authService: AuthService) {
+    this.listToShow$ = new BehaviorSubject(false);
     this.db = db;
     this.complited = false;
     this.authService = authService;
     this.authService.user$.subscribe(result => {
-      this.uuid = result;
-      this.snapShotChanges$ = this.test111$.pipe(
-        switchMap(test111 =>
+      this.stringToQuery = 'user/' + result.uid + '/anime/';
+      this.fullList = this.db.collection(this.stringToQuery);
+      this.snapShotChanges$ = this.listToShow$.pipe(
+        switchMap(listToShow =>
           this.db
-            .collection<Anime>('user/' + result.uid + '/anime/', ref =>
-              ref.where('Complited', '==', test111)
+            .collection<Anime>(this.stringToQuery, ref =>
+              ref.where('Complited', '==', listToShow)
             )
             .snapshotChanges()
         )
       );
     });
-
-    this.test111$ = new BehaviorSubject(false);
   }
 
   changeBetweenList() {
     this.complited = !this.complited;
-    this.test111$.next(this.complited);
+    this.listToShow$.next(this.complited);
   }
 
   getSeries(): Observable<DocumentChangeAction<any>[]> {
     return this.snapShotChanges$;
   }
 
-  updateAnime(anime: Anime, awd2: any) {
-    this.db
-      .collection('user/' + this.uuid.uid + '/anime/')
-      .doc(anime.id)
-      .update(awd2);
+  updateAnime(anime: Anime, newValue: any) {
+    this.fullList.doc(anime.id).update(newValue);
   }
 
   deleteAnime(anime: Anime) {
-    this.db
-      .collection('user/' + this.uuid.uid + '/anime/')
-      .doc(anime.id)
-      .delete();
+    this.fullList.doc(anime.id).delete();
   }
 
   newAnime(anime: any) {
-    return this.db.collection('user/' + this.uuid.uid + '/anime/').add(anime);
+    return this.fullList.add(anime);
   }
 }

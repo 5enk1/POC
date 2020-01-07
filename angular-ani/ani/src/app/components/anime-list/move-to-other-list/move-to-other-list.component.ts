@@ -3,19 +3,17 @@ import { AnimeProviderService } from 'src/app/services/anime-provider.service';
 import { Anime } from 'src/app/models/anime';
 
 @Component({
-  selector: 'app-increase-decrease',
-  templateUrl: './increase-decrease.component.html',
-  styleUrls: ['./increase-decrease.component.css']
+  selector: 'app-move-to-other-list',
+  templateUrl: './move-to-other-list.component.html',
+  styleUrls: ['./move-to-other-list.component.css']
 })
-export class IncreaseDecreaseComponent {
+export class MoveToOtherListComponent {
   @Input() public anime: Anime;
-  @Input() public key: string;
   constructor(public animeProvider: AnimeProviderService) {}
 
-  increaseDecrease(anime: Anime, changeValue, key) {
+  moveToOtherList(anime: Anime, key) {
     const newMap = new Object();
-    const value: number = anime[key];
-    newMap[key] = value + changeValue;
+    newMap[key] = !this.anime.Complited;
     this.animeProvider.updateAnime(anime, newMap);
   }
 }

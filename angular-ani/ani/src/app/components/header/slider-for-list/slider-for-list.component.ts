@@ -12,9 +12,9 @@ export class SliderForListComponent {
   constructor(public animeProvider: AnimeProviderService) {}
   setValue(i, e) {
     if (e.checked) {
-      this.animeProvider.test111$.next(true);
+      this.animeProvider.listToShow$.next(true);
     } else {
-      this.animeProvider.test111$.next(false);
+      this.animeProvider.listToShow$.next(false);
     }
   }
 }

@@ -27,6 +27,7 @@ import {
   ShowOnDirtyErrorStateMatcher
 } from '@angular/material/core';
 import { SliderForListComponent } from './components/header/slider-for-list/slider-for-list.component';
+import { MoveToOtherListComponent } from './components/anime-list/move-to-other-list/move-to-other-list.component';
 
 firebase.initializeApp(environment.firebase);
 @NgModule({
@@ -40,7 +41,8 @@ firebase.initializeApp(environment.firebase);
     RemoveFromListComponent,
     AddNewAnimeComponent,
     AnimeAddNewComponent,
-    SliderForListComponent
+    SliderForListComponent,
+    MoveToOtherListComponent
   ],
   imports: [
     BrowserModule,

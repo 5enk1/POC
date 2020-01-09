@@ -8,6 +8,7 @@ import { Anime } from '../models/anime';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { AuthService } from './auth.service';
+import { async } from '@angular/core/testing';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,7 @@ export class AnimeProviderService {
   snapShotChanges$: Observable<DocumentChangeAction<Anime>[]>;
   stringToQuery: string;
   fullList: AngularFirestoreCollection<unknown>;
+  uid: any;
 
   constructor(db: AngularFirestore, authService: AuthService) {
     this.listToShow$ = new BehaviorSubject(false);
@@ -28,6 +30,7 @@ export class AnimeProviderService {
     this.complited = false;
     this.authService = authService;
     this.authService.user$.subscribe(result => {
+      this.uid = result;
       this.stringToQuery = 'user/' + result.uid + '/anime/';
       this.fullList = this.db.collection(this.stringToQuery);
       this.snapShotChanges$ = this.listToShow$.pipe(
@@ -62,4 +65,23 @@ export class AnimeProviderService {
   newAnime(anime: any) {
     return this.fullList.add(anime);
   }
+
+  createRootForUser(user: firebase.User) {
+    this.db.collection('user/' + user.uid + '/anime').add({ init: 'awd' });
+  }
+
+  // copyAll(uid1,uid2) { copy from one uid to an other if you fuck up
+  //   let awd: Observable<Anime[]> = this.db
+  //     .collection<Anime>('user/' + uid1 + '/anime')
+  //     .valueChanges();
+  //   awd.subscribe(e =>
+  //     e.forEach(awdawd => {
+  //       this.db
+  //         .collection<Anime>(
+  //           'user/' + uid2 + '/anime'
+  //         )
+  //         .add(awdawd);
+  //     })
+  //   );
+  // }
 }

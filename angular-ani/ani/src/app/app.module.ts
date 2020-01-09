@@ -14,8 +14,10 @@ import { environment } from 'src/environments/environment';
 import * as firebase from 'firebase';
 import {
   SignInComponent,
-  SubmitUserComponent
-} from './components/header/sign-in/sign-in.component';
+  SubmitUserComponent,
+  SignUpComponent,
+  SubmitNevUserComponent
+} from './components/header/signInUpOut/sign-in.component';
 import { IncreaseDecreaseComponent } from './components/anime-list/increase-decrease/increase-decrease.component';
 import { RemoveFromListComponent } from './components/anime-list/remove-from-list/remove-from-list.component';
 import {
@@ -42,7 +44,9 @@ firebase.initializeApp(environment.firebase);
     AddNewAnimeComponent,
     AnimeAddNewComponent,
     SliderForListComponent,
-    MoveToOtherListComponent
+    MoveToOtherListComponent,
+    SignUpComponent,
+    SubmitNevUserComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +57,11 @@ firebase.initializeApp(environment.firebase);
     FirebaseModule,
     MaterialModule
   ],
-  entryComponents: [SubmitUserComponent, AnimeAddNewComponent],
+  entryComponents: [
+    SubmitUserComponent,
+    AnimeAddNewComponent,
+    SubmitNevUserComponent
+  ],
   providers: [
     { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher }
   ],

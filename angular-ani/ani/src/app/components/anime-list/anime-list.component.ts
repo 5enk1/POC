@@ -30,8 +30,6 @@ export class AnimeListComponent {
   ];
 
   trackById(index, anime: Anime) {
-    // console.log(anime);
     return anime.AnimeName;
-    //console.log(index, item);
   }
 }

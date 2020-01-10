@@ -22,7 +22,8 @@ import { IncreaseDecreaseComponent } from './components/anime-list/increase-decr
 import { RemoveFromListComponent } from './components/anime-list/remove-from-list/remove-from-list.component';
 import {
   AddNewAnimeComponent,
-  AnimeAddNewComponent
+  AnimeAddNewComponent,
+  EditAnimeComponent
 } from './components/anime-list/add-new-anime/add-new-anime.component';
 import {
   ErrorStateMatcher,
@@ -46,7 +47,8 @@ firebase.initializeApp(environment.firebase);
     SliderForListComponent,
     MoveToOtherListComponent,
     SignUpComponent,
-    SubmitNevUserComponent
+    SubmitNevUserComponent,
+    EditAnimeComponent
   ],
   imports: [
     BrowserModule,

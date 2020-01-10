@@ -55,7 +55,7 @@ export class AnimeProviderService {
   }
 
   updateAnime(anime: Anime, newValue: any) {
-    this.fullList.doc(anime.id).update(newValue);
+    return this.fullList.doc(anime.id).update(newValue);
   }
 
   deleteAnime(anime: Anime) {

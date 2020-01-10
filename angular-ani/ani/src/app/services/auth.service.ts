@@ -29,7 +29,9 @@ export class AuthService {
   async signOut() {
     auth()
       .signOut()
-      .then(() => {})
+      .then(() => {
+        this.user$ = this.afa.authState;
+      })
       .catch(error => {
         console.error(error);
       });

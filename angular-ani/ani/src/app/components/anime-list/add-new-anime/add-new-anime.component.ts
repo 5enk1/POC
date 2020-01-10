@@ -35,7 +35,7 @@ export class AnimeAddNewComponent {
     @Inject(MAT_DIALOG_DATA) public data: Anime
   ) {}
 
-  checked = false;
+  checked = this.data ? this.data.Complited : false;
   newAnimeForm = new FormGroup({
     AnimeName: new FormControl(
       this.data ? this.data.AnimeName : '',
@@ -44,7 +44,7 @@ export class AnimeAddNewComponent {
     Episode: new FormControl(this.data ? this.data.Episode : ''),
     Season: new FormControl(this.data ? this.data.Season : ''),
     Date: new FormControl(this.data ? this.data.Date : ''),
-    Complited: new FormControl(this.data ? true : false),
+    Complited: new FormControl(false),
     PictureUrl: new FormControl(this.data ? this.data.PictureUrl : '')
   });
 

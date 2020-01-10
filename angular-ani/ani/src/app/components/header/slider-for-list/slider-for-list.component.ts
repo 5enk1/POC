@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AnimeProviderService } from 'src/app/services/anime-provider.service';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-slider-for-list',
@@ -9,7 +9,10 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 export class SliderForListComponent {
   formGroupa: any;
-  constructor(public animeProvider: AnimeProviderService) {}
+  constructor(
+    public animeProvider: AnimeProviderService,
+    public authService: AuthService
+  ) {}
   setValue(i, e) {
     if (e.checked) {
       this.animeProvider.listToShow$.next(true);

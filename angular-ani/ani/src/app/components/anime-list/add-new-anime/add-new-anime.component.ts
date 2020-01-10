@@ -77,7 +77,6 @@ export class EditAnimeComponent {
     public animeProvider: AnimeProviderService
   ) {}
   openDialog() {
-    console.log(this.anime);
     this.dialog.open(AnimeAddNewComponent, { data: this.anime });
   }
 }

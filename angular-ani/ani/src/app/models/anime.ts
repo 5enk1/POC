@@ -4,6 +4,6 @@ export class Anime {
   Season: number;
   Date: Date;
   Complited: boolean;
-  pictureurl: string;
+  PictureUrl: string;
   id: string;
 }

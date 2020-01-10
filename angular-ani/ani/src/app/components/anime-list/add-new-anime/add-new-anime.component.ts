@@ -45,7 +45,7 @@ export class AnimeAddNewComponent {
     Season: new FormControl(this.data ? this.data.Season : ''),
     Date: new FormControl(this.data ? this.data.Date : ''),
     Complited: new FormControl(this.data ? true : false),
-    PictureUrl: new FormControl(this.data ? this.data.pictureurl : '')
+    PictureUrl: new FormControl(this.data ? this.data.PictureUrl : '')
   });
 
   onSubmit() {
@@ -77,6 +77,7 @@ export class EditAnimeComponent {
     public animeProvider: AnimeProviderService
   ) {}
   openDialog() {
+    console.log(this.anime);
     this.dialog.open(AnimeAddNewComponent, { data: this.anime });
   }
 }

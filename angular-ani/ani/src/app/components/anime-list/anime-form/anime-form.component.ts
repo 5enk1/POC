@@ -25,7 +25,6 @@ export class AnimeFormComponent {
     ),
     Episode: new FormControl(this.data ? this.data.Episode : ''),
     Season: new FormControl(this.data ? this.data.Season : ''),
-    Date: new FormControl(this.data ? this.data.Date : ''),
     Complited: new FormControl(false),
     PictureUrl: new FormControl(this.data ? this.data.PictureUrl : '')
   });

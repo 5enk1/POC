@@ -14,10 +14,8 @@ import { environment } from 'src/environments/environment';
 import * as firebase from 'firebase';
 import {
   SignInComponent,
-  SubmitUserComponent,
-  SignUpComponent,
-  SubmitNevUserComponent
-} from './components/header/signInUpOut/sign-in.component';
+  SignUpComponent
+} from './components/header/sign-up-out-in/sign-in.component';
 import { IncreaseDecreaseComponent } from './components/anime-list/increase-decrease/increase-decrease.component';
 import { RemoveFromListComponent } from './components/anime-list/remove-from-list/remove-from-list.component';
 import {
@@ -31,6 +29,8 @@ import {
 import { SliderForListComponent } from './components/header/slider-for-list/slider-for-list.component';
 import { MoveToOtherListComponent } from './components/anime-list/move-to-other-list/move-to-other-list.component';
 import { AnimeFormComponent } from './components/anime-list/anime-form/anime-form.component';
+import { SignInFormComponent } from './components/header/sign-up-out-in/sign-in-form/sign-in-form.component';
+import { SignUpFormComponent } from './components/header/sign-up-out-in/sign-up-form/sign-up-form.component';
 
 firebase.initializeApp(environment.firebase);
 @NgModule({
@@ -39,16 +39,16 @@ firebase.initializeApp(environment.firebase);
     AnimeListComponent,
     HeaderComponent,
     SignInComponent,
-    SubmitUserComponent,
     IncreaseDecreaseComponent,
     RemoveFromListComponent,
     AddNewAnimeComponent,
     SliderForListComponent,
     MoveToOtherListComponent,
     SignUpComponent,
-    SubmitNevUserComponent,
     EditAnimeComponent,
-    AnimeFormComponent
+    AnimeFormComponent,
+    SignInFormComponent,
+    SignUpFormComponent
   ],
   imports: [
     BrowserModule,
@@ -60,9 +60,9 @@ firebase.initializeApp(environment.firebase);
     MaterialModule
   ],
   entryComponents: [
-    SubmitUserComponent,
     AnimeFormComponent,
-    SubmitNevUserComponent
+    SignInFormComponent,
+    SignUpFormComponent
   ],
   providers: [
     { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher }

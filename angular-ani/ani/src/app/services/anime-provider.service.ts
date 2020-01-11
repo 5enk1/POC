@@ -1,4 +1,4 @@
-import { Injectable, Component } from '@angular/core';
+import { Injectable } from '@angular/core';
 import {
   DocumentChangeAction,
   AngularFirestore,
@@ -8,14 +8,13 @@ import { Anime } from '../models/anime';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { AuthService } from './auth.service';
-import { async } from '@angular/core/testing';
+import * as firebase from 'firebase';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AnimeProviderService {
   db: AngularFirestore;
-  authService: AuthService;
   docId: any[];
   public complited: boolean;
   public listToShow$: BehaviorSubject<boolean>;
@@ -24,24 +23,25 @@ export class AnimeProviderService {
   fullList: AngularFirestoreCollection<unknown>;
   uid: any;
 
-  constructor(db: AngularFirestore, authService: AuthService) {
+  constructor(db: AngularFirestore, public authService: AuthService) {
     this.listToShow$ = new BehaviorSubject(false);
     this.db = db;
     this.complited = false;
-    this.authService = authService;
-    this.authService.user$.subscribe(result => {
-      this.uid = result;
-      this.stringToQuery = 'user/' + result.uid + '/anime/';
-      this.fullList = this.db.collection(this.stringToQuery);
-      this.snapShotChanges$ = this.listToShow$.pipe(
-        switchMap(listToShow =>
-          this.db
-            .collection<Anime>(this.stringToQuery, ref =>
-              ref.where('Complited', '==', listToShow)
-            )
-            .snapshotChanges()
-        )
-      );
+    authService.user$.subscribe(result => {
+      if (result) {
+        this.uid = result;
+        this.stringToQuery = 'user/' + result.uid + '/anime/';
+        this.fullList = this.db.collection(this.stringToQuery);
+        this.snapShotChanges$ = this.listToShow$.pipe(
+          switchMap(listToShow =>
+            this.db
+              .collection<Anime>(this.stringToQuery, ref =>
+                ref.where('Complited', '==', listToShow)
+              )
+              .snapshotChanges()
+          )
+        );
+      }
     });
   }
 
@@ -58,6 +58,12 @@ export class AnimeProviderService {
     return this.fullList.doc(anime.id).update(newValue);
   }
 
+  removeField(anime: Anime) {
+    return this.fullList
+      .doc(anime.id)
+      .update({ pictureurl: firebase.firestore.FieldValue.delete() });
+  }
+
   deleteAnime(anime: Anime) {
     this.fullList.doc(anime.id).delete();
   }
@@ -70,18 +76,19 @@ export class AnimeProviderService {
     this.db.collection('user/' + user.uid + '/anime').add({ init: 'awd' });
   }
 
-  // copyAll(uid1,uid2) { copy from one uid to an other if you fuck up
-  //   let awd: Observable<Anime[]> = this.db
-  //     .collection<Anime>('user/' + uid1 + '/anime')
-  //     .valueChanges();
-  //   awd.subscribe(e =>
-  //     e.forEach(awdawd => {
-  //       this.db
-  //         .collection<Anime>(
-  //           'user/' + uid2 + '/anime'
-  //         )
-  //         .add(awdawd);
-  //     })
-  //   );
+  // copyAll(uid2) {
+  //   let animeList: Anime[];
+
+  //   this.db
+  //     .collection<Anime>('user/' + 'MmSW0ZhLBtdf8Glkn7Xi5pcqhEO2' + '/anime')
+  //     .snapshotChanges()
+  //     .subscribe(anime => {
+  //       animeList = anime.map(a => {
+  //         const data = a.payload.doc.data();
+  //         const id = a.payload.doc.id;
+  //         return { id, ...data } as Anime;
+  //       });
+  //       animeList.forEach(awdawd => this.removeField(awdawd));
+  //     });
   // }
 }

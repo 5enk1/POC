@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Router } from '@angular/router';
 import { auth } from 'firebase';
 import { AnimeProviderService } from './anime-provider.service';
 
@@ -11,11 +10,7 @@ import { AnimeProviderService } from './anime-provider.service';
 })
 export class AuthService {
   user$: Observable<firebase.User>;
-  constructor(
-    public afa: AngularFireAuth,
-    private afs: AngularFirestore,
-    private router: Router
-  ) {
+  constructor(public afa: AngularFireAuth, private afs: AngularFirestore) {
     this.user$ = this.afa.authState;
   }
   async login(userName, userPassword) {
@@ -26,11 +21,12 @@ export class AuthService {
         err => console.error(err)
       );
   }
+
   async signOut() {
     auth()
       .signOut()
       .then(() => {
-        this.user$ = this.afa.authState;
+        this.user$ = undefined;
       })
       .catch(error => {
         console.error(error);
@@ -44,11 +40,12 @@ export class AuthService {
   signUp(email, password) {
     return auth()
       .createUserWithEmailAndPassword(email, password)
-      .then(user =>
+      .then(user => {
+        this.user$ = this.afa.authState;
         this.afs
           .collection('user/' + user.user.uid + '/anime')
-          .add({ init: 'awd' })
-      )
+          .add({ init: 'awd' });
+      })
       .catch(e => console.log(e));
   }
 }

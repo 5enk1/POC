@@ -58,10 +58,10 @@ export class AnimeProviderService {
     return this.fullList.doc(anime.id).update(newValue);
   }
 
-  removeField(anime: Anime) {
-    return this.fullList
-      .doc(anime.id)
-      .update({ pictureurl: firebase.firestore.FieldValue.delete() });
+  removeField(anime: Anime, key: string) {
+    const newMap = new Object();
+    newMap[key] = firebase.firestore.FieldValue.delete();
+    return this.updateAnime(anime, newMap);
   }
 
   deleteAnime(anime: Anime) {

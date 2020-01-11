@@ -22,7 +22,6 @@ import { IncreaseDecreaseComponent } from './components/anime-list/increase-decr
 import { RemoveFromListComponent } from './components/anime-list/remove-from-list/remove-from-list.component';
 import {
   AddNewAnimeComponent,
-  AnimeAddNewComponent,
   EditAnimeComponent
 } from './components/anime-list/add-new-anime/add-new-anime.component';
 import {
@@ -31,6 +30,7 @@ import {
 } from '@angular/material/core';
 import { SliderForListComponent } from './components/header/slider-for-list/slider-for-list.component';
 import { MoveToOtherListComponent } from './components/anime-list/move-to-other-list/move-to-other-list.component';
+import { AnimeFormComponent } from './components/anime-list/anime-form/anime-form.component';
 
 firebase.initializeApp(environment.firebase);
 @NgModule({
@@ -43,12 +43,12 @@ firebase.initializeApp(environment.firebase);
     IncreaseDecreaseComponent,
     RemoveFromListComponent,
     AddNewAnimeComponent,
-    AnimeAddNewComponent,
     SliderForListComponent,
     MoveToOtherListComponent,
     SignUpComponent,
     SubmitNevUserComponent,
-    EditAnimeComponent
+    EditAnimeComponent,
+    AnimeFormComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +61,7 @@ firebase.initializeApp(environment.firebase);
   ],
   entryComponents: [
     SubmitUserComponent,
-    AnimeAddNewComponent,
+    AnimeFormComponent,
     SubmitNevUserComponent
   ],
   providers: [

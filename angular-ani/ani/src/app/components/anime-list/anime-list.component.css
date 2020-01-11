@@ -6,3 +6,12 @@ img {
 table {
   width: 100%;
 }
+
+.buttonContainer {
+  width: 100%;
+  max-width: 150px;
+}
+.buttonContainer div {
+  width: 50%;
+  float: left;
+}

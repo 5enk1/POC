@@ -42,9 +42,17 @@
         <app-add-new-anime></app-add-new-anime>
       </th>
       <td mat-cell *matCellDef="let element">
-        <app-remove-from-list [anime]="element"></app-remove-from-list>
-        <app-move-to-other-list [anime]="element"></app-move-to-other-list>
-        <app-edit-new-anime [anime]="element"></app-edit-new-anime>
+        <div class="buttonContainer">
+          <div>
+            <app-move-to-other-list [anime]="element"></app-move-to-other-list>
+          </div>
+          <div>
+            <app-edit-anime [anime]="element"></app-edit-anime>
+          </div>
+          <div>
+            <app-remove-from-list [anime]="element"></app-remove-from-list>
+          </div>
+        </div>
       </td>
     </ng-container>
   </tr>

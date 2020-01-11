@@ -1,12 +1,8 @@
-import { Component, OnInit, Inject, Input } from '@angular/core';
-import {
-  MatDialog,
-  MatDialogRef,
-  MAT_DIALOG_DATA
-} from '@angular/material/dialog';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Component, Input } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { AnimeProviderService } from 'src/app/services/anime-provider.service';
 import { Anime } from 'src/app/models/anime';
+import { AnimeFormComponent } from '../anime-form/anime-form.component';
 
 @Component({
   selector: 'app-add-new-anime',
@@ -20,53 +16,12 @@ export class AddNewAnimeComponent {
     public animeProvider: AnimeProviderService
   ) {}
   openDialog() {
-    this.dialog.open(AnimeAddNewComponent, this.anime);
+    this.dialog.open(AnimeFormComponent, this.anime);
   }
 }
 
 @Component({
-  templateUrl: './anime-add-new.component.html',
-  styleUrls: ['./anime-add-new.component.css']
-})
-export class AnimeAddNewComponent {
-  constructor(
-    public animeProvider: AnimeProviderService,
-    public dialogRef: MatDialogRef<AddNewAnimeComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Anime
-  ) {}
-
-  checked = this.data ? this.data.Complited : false;
-  newAnimeForm = new FormGroup({
-    AnimeName: new FormControl(
-      this.data ? this.data.AnimeName : '',
-      Validators.required
-    ),
-    Episode: new FormControl(this.data ? this.data.Episode : ''),
-    Season: new FormControl(this.data ? this.data.Season : ''),
-    Date: new FormControl(this.data ? this.data.Date : ''),
-    Complited: new FormControl(false),
-    PictureUrl: new FormControl(this.data ? this.data.PictureUrl : '')
-  });
-
-  onSubmit() {
-    const data = this.newAnimeForm.value as Anime;
-    if (this.newAnimeForm.valid) {
-      this.animeProvider.newAnime(data).then(res => this.dialogRef.close());
-    }
-  }
-
-  onEdit(anime: Anime) {
-    const data = this.newAnimeForm.value as Anime;
-    if (this.newAnimeForm.valid) {
-      this.animeProvider
-        .updateAnime(anime, data)
-        .then(res => this.dialogRef.close());
-    }
-  }
-}
-
-@Component({
-  selector: 'app-edit-new-anime',
+  selector: 'app-edit-anime',
   templateUrl: './edit-anime.component.html',
   styleUrls: ['./edit-anime.component.css']
 })
@@ -77,6 +32,6 @@ export class EditAnimeComponent {
     public animeProvider: AnimeProviderService
   ) {}
   openDialog() {
-    this.dialog.open(AnimeAddNewComponent, { data: this.anime });
+    this.dialog.open(AnimeFormComponent, { data: this.anime });
   }
 }

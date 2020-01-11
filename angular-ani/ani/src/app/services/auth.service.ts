@@ -10,8 +10,16 @@ import { AnimeProviderService } from './anime-provider.service';
 })
 export class AuthService {
   user$: Observable<firebase.User>;
+  email: any;
   constructor(public afa: AngularFireAuth, private afs: AngularFirestore) {
     this.user$ = this.afa.authState;
+    this.user$.subscribe(e => {
+      if (e) {
+        this.email = e.email;
+      } else {
+        this.email = undefined;
+      }
+    });
   }
   async login(userName, userPassword) {
     auth()

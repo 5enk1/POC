@@ -8,9 +8,8 @@ describe('MoveToOtherListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MoveToOtherListComponent ]
-    })
-    .compileComponents();
+      declarations: [MoveToOtherListComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

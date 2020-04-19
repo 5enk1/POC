@@ -8,6 +8,6 @@ export const environment = {
     storageBucket: 'anime-poc.appspot.com',
     messagingSenderId: '564419430236',
     appId: '1:564419430236:web:91b931afe06360eb082399',
-    measurementId: 'G-BCH6S18V61'
-  }
+    measurementId: 'G-BCH6S18V61',
+  },
 };

@@ -5,7 +5,7 @@ import { AnimeProviderService } from 'src/app/services/anime-provider.service';
 @Component({
   selector: 'app-remove-from-list',
   templateUrl: './remove-from-list.component.html',
-  styleUrls: ['./remove-from-list.component.css']
+  styleUrls: ['./remove-from-list.component.css'],
 })
 export class RemoveFromListComponent {
   @Input() public anime: Anime;

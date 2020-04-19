@@ -8,9 +8,8 @@ describe('AnimeListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AnimeListComponent ]
-    })
-    .compileComponents();
+      declarations: [AnimeListComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

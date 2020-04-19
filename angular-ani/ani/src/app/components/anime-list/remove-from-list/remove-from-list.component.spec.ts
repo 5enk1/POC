@@ -8,9 +8,8 @@ describe('RemoveFromListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RemoveFromListComponent ]
-    })
-    .compileComponents();
+      declarations: [RemoveFromListComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

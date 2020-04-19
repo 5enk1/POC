@@ -1,32 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AnimeProviderService } from 'src/app/services/anime-provider.service';
 import { Anime } from 'src/app/models/anime';
 
 @Component({
   selector: 'app-anime-list',
   templateUrl: './anime-list.component.html',
-  styleUrls: ['./anime-list.component.css']
+  styleUrls: ['./anime-list.component.css'],
+  providers: [AnimeProviderService],
 })
-export class AnimeListComponent {
-  animeList: Anime[];
+export class AnimeListComponent implements OnInit {
+  constructor(private animeProvider: AnimeProviderService) {}
 
-  constructor(private animeProvider: AnimeProviderService) {
-    animeProvider.getSeries().subscribe(
-      anime =>
-        (this.animeList = anime.map(a => {
-          const data = a.payload.doc.data();
-          const id = a.payload.doc.id;
-          return { id, ...data } as Anime;
-        }))
-    );
-  }
   displayedColumns: string[] = [
     'pictureurl',
     'Name',
     'Episode',
     'Season',
-    'Functions'
+    'Functions',
   ];
+
+  ngOnInit(): void {}
 
   trackById(index, anime: Anime) {
     return anime.AnimeName;

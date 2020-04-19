@@ -3,17 +3,16 @@ import { Observable } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { auth } from 'firebase';
-import { AnimeProviderService } from './anime-provider.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   user$: Observable<firebase.User>;
   email: any;
   constructor(public afa: AngularFireAuth, private afs: AngularFirestore) {
     this.user$ = this.afa.authState;
-    this.user$.subscribe(e => {
+    this.user$.subscribe((e) => {
       if (e) {
         this.email = e.email;
       } else {
@@ -25,8 +24,8 @@ export class AuthService {
     auth()
       .signInWithEmailAndPassword(userName, userPassword)
       .then(
-        res => (this.user$ = this.afa.authState),
-        err => console.error(err)
+        (res) => (this.user$ = this.afa.authState),
+        (err) => console.error(err)
       );
   }
 
@@ -36,7 +35,7 @@ export class AuthService {
       .then(() => {
         this.user$ = undefined;
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
   }
@@ -48,12 +47,12 @@ export class AuthService {
   signUp(email, password) {
     return auth()
       .createUserWithEmailAndPassword(email, password)
-      .then(user => {
+      .then((user) => {
         this.user$ = this.afa.authState;
         this.afs
           .collection('user/' + user.user.uid + '/anime')
           .add({ init: 'awd' });
       })
-      .catch(e => console.log(e));
+      .catch((e) => console.log(e));
   }
 }

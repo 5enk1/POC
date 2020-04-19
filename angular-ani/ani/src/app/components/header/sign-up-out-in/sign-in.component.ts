@@ -8,7 +8,7 @@ import { SignInFormComponent } from './sign-in-form/sign-in-form.component';
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
-  styleUrls: ['./sign-in.component.css']
+  styleUrls: ['./sign-in.component.css'],
 })
 export class SignInComponent {
   constructor(
@@ -25,7 +25,7 @@ export class SignInComponent {
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.css']
+  styleUrls: ['./sign-up.component.css'],
 })
 export class SignUpComponent {
   constructor(public auth: AuthService, public dialog: MatDialog) {}

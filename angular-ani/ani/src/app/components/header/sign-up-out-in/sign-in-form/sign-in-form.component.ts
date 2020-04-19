@@ -7,7 +7,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   templateUrl: './sign-in-form.component.html',
-  styleUrls: ['./sign-in-form.component.css']
+  styleUrls: ['./sign-in-form.component.css'],
 })
 export class SignInFormComponent {
   constructor(
@@ -21,7 +21,7 @@ export class SignInFormComponent {
       '',
       Validators.compose([Validators.required, Validators.email])
     ),
-    userPassword: new FormControl('')
+    userPassword: new FormControl(''),
   });
 
   close() {
@@ -36,8 +36,8 @@ export class SignInFormComponent {
           this.formpUserDetails.value.userPassword
         )
         .then(
-          res => this.close(),
-          err => console.error(err)
+          (res) => this.close(),
+          (err) => console.error(err)
         );
     }
   }

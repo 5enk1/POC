@@ -8,9 +8,8 @@ describe('AddNewAnimeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddNewAnimeComponent ]
-    })
-    .compileComponents();
+      declarations: [AddNewAnimeComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

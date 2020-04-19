@@ -8,9 +8,8 @@ describe('IncreaseDecreaseComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ IncreaseDecreaseComponent ]
-    })
-    .compileComponents();
+      declarations: [IncreaseDecreaseComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

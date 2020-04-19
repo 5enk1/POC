@@ -6,7 +6,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   templateUrl: './sign-up-form.component.html',
-  styleUrls: ['./sign-up-form.component.css']
+  styleUrls: ['./sign-up-form.component.css'],
 })
 export class SignUpFormComponent {
   constructor(
@@ -19,7 +19,7 @@ export class SignUpFormComponent {
       '',
       Validators.compose([Validators.required, Validators.email])
     ),
-    newUserPassword: new FormControl('', Validators.required)
+    newUserPassword: new FormControl('', Validators.required),
   });
 
   signUp() {

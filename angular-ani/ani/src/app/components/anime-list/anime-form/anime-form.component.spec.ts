@@ -8,9 +8,8 @@ describe('AnimeFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AnimeFormComponent ]
-    })
-    .compileComponents();
+      declarations: [AnimeFormComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

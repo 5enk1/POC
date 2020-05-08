@@ -17,7 +17,7 @@ jobs:
         run: npm install
         working-directory: ${{env.working-directory}}
       - name: Build
-        run: npm run build-prod
+        run: npm run build --prod
         env:
           FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }} 
         working-directory: ${{env.working-directory}}

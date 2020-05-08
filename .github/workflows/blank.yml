@@ -15,15 +15,17 @@ jobs:
         uses: actions/checkout@master
       - name: Install Dependencies
         run: npm install
+        working-directory: ${{working-directory}}
       - name: Build
         run: npm run build-prod
         env:
           FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }} 
+        working-directory: ${{working-directory}}
       - name: Archive Production Artifact
         uses: actions/upload-artifact@master
         with:
           name: dist
-          path: dist
+          path: ${{working-directory}}/dist
   deploy:
     name: Deploy
     needs: build

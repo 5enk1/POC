@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: `${process.env.FIREBASE_API_KEY}`,
+    apiKey: 'AIzaSyCSTMdx0pS5vL6OxzzlX9UYSddTj5FJ_tU',
     authDomain: 'anime-poc.firebaseapp.com',
     databaseURL: 'https://anime-poc.firebaseio.com',
     projectId: 'anime-poc',

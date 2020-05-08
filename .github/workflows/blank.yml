@@ -39,7 +39,7 @@ jobs:
         uses: actions/download-artifact@master
         with:
           name: dist
-          working: ${{env.working-directory}}
+          path: ${{env.working-directory}}
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
         with:

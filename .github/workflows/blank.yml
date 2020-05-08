@@ -25,7 +25,7 @@ jobs:
         uses: actions/upload-artifact@master
         with:
           name: dist
-          path: ${{working-directory}}/dist
+          path: ${{env.working-directory}}/dist
   deploy:
     name: Deploy
     needs: build

@@ -8,11 +8,11 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    env:
+      working-directory: ./angular-ani/ani/
     steps:
       - name: Checkout Repo
         uses: actions/checkout@master
-      - name: ChangeDir to anipoc
-        run: cd angular-ani/ani/
       - name: Install Dependencies
         run: npm install
       - name: Build

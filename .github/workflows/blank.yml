@@ -30,6 +30,8 @@ jobs:
     name: Deploy
     needs: build
     runs-on: ubuntu-latest
+    env:
+      working-directory: ./angular-ani/ani/
     steps:
       - name: Checkout Repo
         uses: actions/checkout@master
@@ -37,10 +39,11 @@ jobs:
         uses: actions/download-artifact@master
         with:
           name: dist
+          working: ${{env.working-directory}}
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
         with:
           args: deploy --only hosting
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-          PROJECT_PATH: ./angular-ani/ani/
+          PROJECT_PATH: ${{env.working-directory}}

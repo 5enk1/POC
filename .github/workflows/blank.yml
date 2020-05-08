@@ -26,20 +26,6 @@ jobs:
         with:
           name: dist
           path: ${{env.working-directory}}/dist
-  deploy:
-    name: Deploy
-    needs: build
-    runs-on: ubuntu-latest
-    env:
-      working-directory: ./angular-ani/ani/
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@master
-      - name: Download Artifact
-        uses: actions/download-artifact@master
-        with:
-          name: dist
-          path: ${{env.working-directory}}
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
         with:

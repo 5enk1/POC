@@ -30,6 +30,10 @@ import { AnimeFormComponent } from './components/anime-list/anime-form/anime-for
 import { SignInFormComponent } from './components/header/sign-up-out-in/sign-in-form/sign-in-form.component';
 import { SignUpFormComponent } from './components/header/sign-up-out-in/sign-up-form/sign-up-form.component';
 import { MoveToListComponent } from './components/anime-list/move-to-list/move-to-list.component';
+import {
+  AddNewListComponent,
+  AddNewListFormComponent,
+} from './components/anime-list/add-new-list/add-new-list.component';
 
 firebase.initializeApp(environment.firebase);
 @NgModule({
@@ -47,6 +51,7 @@ firebase.initializeApp(environment.firebase);
     SignInFormComponent,
     SignUpFormComponent,
     MoveToListComponent,
+    AddNewListComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,6 +63,7 @@ firebase.initializeApp(environment.firebase);
     MaterialModule,
   ],
   entryComponents: [
+    AddNewListFormComponent,
     AnimeFormComponent,
     SignInFormComponent,
     SignUpFormComponent,

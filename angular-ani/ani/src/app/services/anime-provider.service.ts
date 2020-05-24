@@ -9,6 +9,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { switchMap, map } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 import * as firebase from 'firebase';
+import { ListWithId } from '../models/list-with-id';
 
 @Injectable({
   providedIn: 'root',
@@ -21,8 +22,10 @@ export class AnimeProviderService {
   snapShotChanges$: Observable<DocumentChangeAction<Anime>[]>;
   fullList: AngularFirestoreCollection<unknown>;
   uid: any;
-  public listOfListName$: Observable<any>;
+  public listOfListName$: ListWithId;
   public animeList: Anime[];
+  fullListOfList: any;
+  listOfListNames: any;
 
   constructor(db: AngularFirestore, private authService: AuthService) {
     this.listToShow$ = new BehaviorSubject(false);
@@ -35,9 +38,14 @@ export class AnimeProviderService {
           .collection('user')
           .doc(result.uid)
           .snapshotChanges()
-          .subscribe(
-            (e) => (this.listOfListName$ = e.payload.data()['collections'])
-          );
+          .subscribe((e) => {
+            this.listOfListName$ = {
+              data: e.payload.data()['collections'],
+              id: e.payload.id,
+            } as ListWithId;
+            this.listOfListNames = e.payload.data()['collections'];
+          });
+        this.fullListOfList = this.db.collection('user').doc(result.uid);
         this.fullList = this.db
           .collection('user')
           .doc(result.uid)
@@ -90,4 +98,6 @@ export class AnimeProviderService {
   createRootForUser(user: firebase.User) {
     this.db.collection('user/' + user.uid + '/anime').add({ init: 'awd' });
   }
+
+  addList(listName: string) {}
 }

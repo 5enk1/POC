@@ -39,26 +39,27 @@
     </ng-container>
     <ng-container matColumnDef="Functions">
       <th mat-header-cell *matHeaderCellDef>
-        <app-add-new-anime></app-add-new-anime>
         <mat-form-field>
           <mat-label>Lists</mat-label>
           <mat-select
             (selectionChange)="animeProvider.changeBetweenList($event.value)"
           >
             <mat-option
-              *ngFor="let listname of animeProvider.listOfListName$"
+              *ngFor="let listname of animeProvider.listOfListNames"
               [(value)]="listname"
             >
               {{ listname }}
             </mat-option>
           </mat-select>
         </mat-form-field>
+        <app-add-new-list></app-add-new-list>
+        <app-add-new-anime></app-add-new-anime>
       </th>
       <td mat-cell *matCellDef="let element">
         <div class="buttonContainer">
           <div>
             <app-move-to-list
-              [listNames]="animeProvider.listOfListName$"
+              [listNames]="animeProvider.listOfListNames"
               [anime]="element"
             ></app-move-to-list>
           </div>

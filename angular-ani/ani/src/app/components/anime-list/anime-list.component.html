@@ -57,7 +57,10 @@
       <td mat-cell *matCellDef="let element">
         <div class="buttonContainer">
           <div>
-            <app-move-to-other-list [anime]="element"></app-move-to-other-list>
+            <app-move-to-list
+              [listNames]="animeProvider.listOfListName$"
+              [anime]="element"
+            ></app-move-to-list>
           </div>
           <div>
             <app-edit-anime [anime]="element"></app-edit-anime>

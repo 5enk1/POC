@@ -26,10 +26,10 @@ import {
   ErrorStateMatcher,
   ShowOnDirtyErrorStateMatcher,
 } from '@angular/material/core';
-import { MoveToOtherListComponent } from './components/anime-list/move-to-other-list/move-to-other-list.component';
 import { AnimeFormComponent } from './components/anime-list/anime-form/anime-form.component';
 import { SignInFormComponent } from './components/header/sign-up-out-in/sign-in-form/sign-in-form.component';
 import { SignUpFormComponent } from './components/header/sign-up-out-in/sign-up-form/sign-up-form.component';
+import { MoveToListComponent } from './components/anime-list/move-to-list/move-to-list.component';
 
 firebase.initializeApp(environment.firebase);
 @NgModule({
@@ -41,12 +41,12 @@ firebase.initializeApp(environment.firebase);
     IncreaseDecreaseComponent,
     RemoveFromListComponent,
     AddNewAnimeComponent,
-    MoveToOtherListComponent,
     SignUpComponent,
     EditAnimeComponent,
     AnimeFormComponent,
     SignInFormComponent,
     SignUpFormComponent,
+    MoveToListComponent,
   ],
   imports: [
     BrowserModule,

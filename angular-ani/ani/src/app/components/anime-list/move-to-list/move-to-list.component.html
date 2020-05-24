@@ -1,0 +1,16 @@
+<button mat-button [matMenuTriggerFor]="afterMenu">
+  <i class="material-icons">redo</i>
+</button>
+<mat-menu #afterMenu="matMenu" xPosition="after">
+  <mat-nav-list>
+    <mat-list-item *ngFor="let listName of listNames">
+      <button
+        mat-button
+        class="btn"
+        (click)="moveToOtherList(anime, 'Complited', listName)"
+      >
+        {{ listName }}
+      </button>
+    </mat-list-item>
+  </mat-nav-list>
+</mat-menu>

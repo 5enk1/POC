@@ -19,7 +19,6 @@ export class AnimeProviderService {
   public complited: string | boolean;
   public listToShow$: BehaviorSubject<string | boolean>;
   snapShotChanges$: Observable<DocumentChangeAction<Anime>[]>;
-  stringToQuery: string;
   fullList: AngularFirestoreCollection<unknown>;
   uid: any;
   public listOfListName$: Observable<any>;
@@ -39,7 +38,6 @@ export class AnimeProviderService {
           .subscribe(
             (e) => (this.listOfListName$ = e.payload.data()['collections'])
           );
-        this.stringToQuery = 'user/' + result.uid + '/anime/';
         this.fullList = this.db
           .collection('user')
           .doc(result.uid)

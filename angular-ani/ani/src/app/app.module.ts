@@ -40,6 +40,7 @@ firebase.initializeApp(environment.firebase);
   declarations: [
     AppComponent,
     AnimeListComponent,
+    AddNewListFormComponent,
     HeaderComponent,
     SignInComponent,
     IncreaseDecreaseComponent,

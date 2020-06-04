@@ -21,11 +21,6 @@ jobs:
         env:
           FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }} 
         working-directory: ${{env.working-directory}}
-      - name: Archive Production Artifact
-        uses: actions/upload-artifact@master
-        with:
-          name: dist
-          path: ${{env.working-directory}}/dist
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
         with:

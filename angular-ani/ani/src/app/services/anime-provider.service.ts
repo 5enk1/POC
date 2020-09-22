@@ -3,6 +3,7 @@ import {
   DocumentChangeAction,
   AngularFirestore,
   AngularFirestoreCollection,
+  SnapshotOptions,
 } from '@angular/fire/firestore';
 import { Anime } from '../models/anime';
 import { Observable, BehaviorSubject } from 'rxjs';
@@ -22,10 +23,9 @@ export class AnimeProviderService {
   snapShotChanges$: Observable<DocumentChangeAction<Anime>[]>;
   fullList: AngularFirestoreCollection<unknown>;
   uid: any;
-  public listOfListName$: ListWithId;
   public animeList: Anime[];
   fullListOfList: any;
-  listOfListNames: any;
+  listOfListNames: SnapshotOptions;
 
   constructor(db: AngularFirestore, private authService: AuthService) {
     this.listToShow$ = new BehaviorSubject(false);
@@ -39,10 +39,6 @@ export class AnimeProviderService {
           .doc(result.uid)
           .snapshotChanges()
           .subscribe((e) => {
-            this.listOfListName$ = {
-              data: e.payload.data()['collections'],
-              id: e.payload.id,
-            } as ListWithId;
             this.listOfListNames = e.payload.data()['collections'];
           });
         this.fullListOfList = this.db.collection('user').doc(result.uid);
@@ -99,5 +95,9 @@ export class AnimeProviderService {
     this.db.collection('user/' + user.uid + '/anime').add({ init: 'awd' });
   }
 
-  addList(listName: string) {}
+  addList(listName: any) {
+    this.fullListOfList.update({
+      collections: firebase.firestore.FieldValue.arrayUnion(listName),
+    });
+  }
 }

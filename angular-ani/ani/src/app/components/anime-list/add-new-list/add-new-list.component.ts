@@ -6,6 +6,7 @@ import {
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
 import { FormGroup, FormControl } from '@angular/forms';
+import { AnimeListFormComponent } from '../../forms/anime-list-form/anime-list-form.component';
 
 @Component({
   selector: 'app-add-new-list',
@@ -18,32 +19,6 @@ export class AddNewListComponent {
     public animeProvider: AnimeProviderService
   ) {}
   openDialog() {
-    this.dialog.open(AddNewListFormComponent);
+    this.dialog.open(AnimeListFormComponent);
   }
-}
-
-@Component({
-  templateUrl: './add-new-list-form.component.html',
-  styleUrls: ['./add-new-list-form.component.css'],
-})
-export class AddNewListFormComponent implements OnInit {
-  newListForm = new FormGroup({
-    NewListName: new FormControl(),
-  });
-
-  ngOnInit(): void {}
-  constructor(
-    public animeProvider: AnimeProviderService,
-    public dialogRef: MatDialogRef<AddNewListFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: String
-  ) {}
-
-  onSubmit() {
-    const data = this.newListForm.value;
-    if (this.newListForm.valid) {
-      this.animeProvider.newAnime(data).then((res) => this.dialogRef.close());
-    }
-  }
-
-  onEdit() {}
 }

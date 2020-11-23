@@ -26,21 +26,18 @@ import {
   ErrorStateMatcher,
   ShowOnDirtyErrorStateMatcher,
 } from '@angular/material/core';
-import { AnimeFormComponent } from './components/anime-list/anime-form/anime-form.component';
+import { AnimeFormComponent } from './components/forms/anime-form/anime-form.component';
 import { SignInFormComponent } from './components/header/sign-up-out-in/sign-in-form/sign-in-form.component';
 import { SignUpFormComponent } from './components/header/sign-up-out-in/sign-up-form/sign-up-form.component';
 import { MoveToListComponent } from './components/anime-list/move-to-list/move-to-list.component';
-import {
-  AddNewListComponent,
-  AddNewListFormComponent,
-} from './components/anime-list/add-new-list/add-new-list.component';
+import { AddNewListComponent } from './components/anime-list/add-new-list/add-new-list.component';
+import { AnimeListFormComponent } from './components/forms/anime-list-form/anime-list-form.component';
 
 firebase.initializeApp(environment.firebase);
 @NgModule({
   declarations: [
     AppComponent,
     AnimeListComponent,
-    AddNewListFormComponent,
     HeaderComponent,
     SignInComponent,
     IncreaseDecreaseComponent,
@@ -53,6 +50,7 @@ firebase.initializeApp(environment.firebase);
     SignUpFormComponent,
     MoveToListComponent,
     AddNewListComponent,
+    AnimeListFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,8 +62,8 @@ firebase.initializeApp(environment.firebase);
     MaterialModule,
   ],
   entryComponents: [
-    AddNewListFormComponent,
     AnimeFormComponent,
+    AnimeListFormComponent,
     SignInFormComponent,
     SignUpFormComponent,
   ],

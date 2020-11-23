@@ -1,9 +1,10 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { AnimeProviderService } from 'src/app/services/anime-provider.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { AddNewAnimeComponent } from '../add-new-anime/add-new-anime.component';
+
 import { Anime } from 'src/app/models/anime';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AddNewAnimeComponent } from '../../anime-list/add-new-anime/add-new-anime.component';
 
 @Component({
   templateUrl: './anime-form.component.html',

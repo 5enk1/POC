@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>add series</h1>
+<div mat-dialog-content>
+  <form [formGroup]="newAnimeForm">
+    <div>
+      <mat-form-field class="full-width">
+        <input
+          matInput
+          placeholder="Series"
+          formControlName="Episode"
+          type="text"
+        />
+      </mat-form-field>
+    </div>
+    <button mat-button (click)="onSubmit()">Submit</button>
+  </form>
+</div>

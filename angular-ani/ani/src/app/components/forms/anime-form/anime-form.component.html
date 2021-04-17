@@ -42,9 +42,16 @@
       </mat-form-field>
     </div>
     <div>
-      <mat-checkbox [(ngModel)]="checked" formControlName="Complited">
-        Complited
-      </mat-checkbox>
+      <mat-form-field class="full-width">
+        <mat-select formControlName="Complited">
+          <mat-option
+            *ngFor="let animelist of this.animeProvider.listOfListNames"
+            [value]="animelist"
+          >
+            {{ animelist }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
     <button mat-button (click)="this.data ? onEdit(this.data) : onSubmit()">
       Submit

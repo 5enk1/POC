@@ -3,7 +3,7 @@ export class Anime {
   Episode: number;
   Season: number;
   Date: Date;
-  Complited: boolean;
+  Complited: boolean | string;
   PictureUrl: string;
   id: string;
 }

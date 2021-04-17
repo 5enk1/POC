@@ -11,7 +11,6 @@ import { AddNewAnimeComponent } from '../../anime-list/add-new-anime/add-new-ani
   styleUrls: ['./anime-form.component.css'],
 })
 export class AnimeFormComponent implements OnInit {
-  checked = this.data ? this.data.Complited : false;
   newAnimeForm = new FormGroup({
     AnimeName: new FormControl(
       this.data ? this.data.AnimeName : '',
@@ -19,7 +18,9 @@ export class AnimeFormComponent implements OnInit {
     ),
     Episode: new FormControl(this.data ? this.data.Episode : ''),
     Season: new FormControl(this.data ? this.data.Season : ''),
-    Complited: new FormControl(false),
+    Complited: new FormControl(
+      this.data ? this.data.Complited : this.animeProvider.listOfListNames[0]
+    ),
     PictureUrl: new FormControl(this.data ? this.data.PictureUrl : ''),
   });
 

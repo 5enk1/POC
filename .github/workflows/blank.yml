@@ -25,11 +25,11 @@ jobs:
         working-directory: ${{env.working-directory}}
       - name: Deploy to Firebase
         uses: FirebaseExtended/action-hosting-deploy@v0
+        entryPoint: ${{env.working-directory}}
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_ANIME_POC }}'
           channelId: live
           projectId: anime-poc
-          entryPoint: ${{env.working-directory}}
         env:
           PROJECT_PATH: ${{env.working-directory}}

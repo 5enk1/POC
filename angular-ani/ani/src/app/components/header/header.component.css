@@ -1,0 +1,19 @@
+.holder{
+    margin-left:auto;
+    margin-right:auto;
+    top: 0px;
+    width:100%;
+    position:relative;
+}
+.right {
+    position:relative;
+    float: right;
+    width: 300px;
+    padding: 10px;
+  }
+.left {
+    position:relative;
+    float: left;
+    width: 300px;
+    padding: 10px;
+  }

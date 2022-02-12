@@ -1,7 +1,11 @@
 <mat-toolbar>
   <mat-toolbar-row>
-    <span>Series thing</span>
-    <app-sign-in></app-sign-in>
-    {{ auth.email }}
+    <div class="holder">    
+      <div class="left" ><span>Series thing</span></div>
+      <div class="right">
+      {{ auth.email }}
+      <app-sign-in></app-sign-in>
+      </div>
+    </div>
   </mat-toolbar-row>
 </mat-toolbar>

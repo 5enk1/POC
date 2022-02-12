@@ -9,7 +9,7 @@ import { Anime } from 'src/app/models/anime';
   providers: [AnimeProviderService],
 })
 export class AnimeListComponent implements OnInit {
-  constructor(private animeProvider: AnimeProviderService) {}
+  constructor(public animeProvider: AnimeProviderService) {}
 
   displayedColumns: string[] = [
     'pictureurl',

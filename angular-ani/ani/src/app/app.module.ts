@@ -11,7 +11,7 @@ import { FirebaseModule } from './shared/modules/firebase.module';
 import { AnimeListComponent } from './components/anime-list/anime-list.component';
 import { HeaderComponent } from './components/header/header.component';
 import { environment } from 'src/environments/environment';
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/compat/app';
 import {
   SignInComponent,
   SignUpComponent,
@@ -33,7 +33,7 @@ import { MoveToListComponent } from './components/anime-list/move-to-list/move-t
 import { AddNewListComponent } from './components/anime-list/add-new-list/add-new-list.component';
 import { AnimeListFormComponent } from './components/forms/anime-list-form/anime-list-form.component';
 
-firebase.initializeApp(environment.firebase);
+firebase.default.initializeApp(environment.firebase);
 @NgModule({
   declarations: [
     AppComponent,

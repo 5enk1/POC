@@ -45,8 +45,8 @@
             (selectionChange)="animeProvider.changeBetweenList($event.value)"
           >
             <mat-option
-              *ngFor="let listname of animeProvider.listOfListNames"
-              [(value)]="listname"
+              *ngFor="let listname of animeProvider.listOfListNames; let i = index"
+              [(value)]="animeProvider.listOfListNames[i]"
             >
               {{ listname }}
             </mat-option>

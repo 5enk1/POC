@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { auth } from 'firebase';
+import auth from 'firebase/compat/app';
 import { AuthService } from './services/auth.service';
 
 @Component({

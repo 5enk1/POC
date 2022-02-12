@@ -4,12 +4,12 @@ import {
   AngularFirestore,
   AngularFirestoreCollection,
   SnapshotOptions,
-} from '@angular/fire/firestore';
+} from '@angular/fire/compat/firestore';
 import { Anime } from '../models/anime';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { switchMap, map } from 'rxjs/operators';
 import { AuthService } from './auth.service';
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/compat/app';
 import { ListWithId } from '../models/list-with-id';
 
 @Injectable({
@@ -79,7 +79,7 @@ export class AnimeProviderService {
 
   removeField(anime: Anime, key: string) {
     const newMap = new Object();
-    newMap[key] = firebase.firestore.FieldValue.delete();
+    newMap[key] = firebase.default.firestore.FieldValue.delete();
     return this.updateAnime(anime, newMap);
   }
 
@@ -91,13 +91,13 @@ export class AnimeProviderService {
     return this.fullList.add(anime);
   }
 
-  createRootForUser(user: firebase.User) {
+  createRootForUser(user: firebase.default.User) {
     this.db.collection('user/' + user.uid + '/anime').add({ init: 'awd' });
   }
 
   addList(listName: any) {
     this.fullListOfList.update({
-      collections: firebase.firestore.FieldValue.arrayUnion(listName),
+      collections: firebase.default.firestore.FieldValue.arrayUnion(listName),
     });
   }
 }

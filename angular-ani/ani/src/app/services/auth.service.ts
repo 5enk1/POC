@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { auth } from 'firebase';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import  firebase from 'firebase/compat/app';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +21,7 @@ export class AuthService {
     });
   }
   async login(userName, userPassword) {
-    auth()
+    firebase.auth()
       .signInWithEmailAndPassword(userName, userPassword)
       .then(
         (res) => (this.user$ = this.afa.authState),
@@ -30,7 +30,7 @@ export class AuthService {
   }
 
   async signOut() {
-    auth()
+    firebase.auth()
       .signOut()
       .then(() => {
         this.user$ = undefined;
@@ -45,7 +45,7 @@ export class AuthService {
   }
 
   signUp(email, password) {
-    return auth()
+    return firebase.auth()
       .createUserWithEmailAndPassword(email, password)
       .then((user) => {
         this.user$ = this.afa.authState;

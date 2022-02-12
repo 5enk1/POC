@@ -1,11 +1,11 @@
 import {
-  FirestoreSettingsToken,
+  SETTINGS,
   AngularFirestoreModule,
-} from '@angular/fire/firestore';
+} from '@angular/fire/compat/firestore';
 import { NgModule } from '@angular/core';
-import { AngularFireModule } from '@angular/fire';
+import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment';
-import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
 @NgModule({
   imports: [
@@ -14,6 +14,6 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
     AngularFireAuthModule,
   ],
   exports: [AngularFireModule, AngularFirestoreModule],
-  providers: [{ provide: FirestoreSettingsToken, useValue: {} }],
+  providers: [{ provide: SETTINGS, useValue: {} }],
 })
 export class FirebaseModule {}

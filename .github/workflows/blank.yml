@@ -30,5 +30,6 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_ANIME_POC }}'
           channelId: live
           projectId: anime-poc
+          entryPoint: ${{env.working-directory}}
         env:
           PROJECT_PATH: ${{env.working-directory}}

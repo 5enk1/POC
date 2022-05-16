@@ -41,11 +41,14 @@ export class AnimeProviderService {
           .subscribe((e) => {
             this.listOfListNames = e.payload.data()['collections'];
           });
+
         this.fullListOfList = this.db.collection('user').doc(result.uid);
+
         this.fullList = this.db
           .collection('user')
           .doc(result.uid)
           .collection<Anime>('anime');
+
         this.listToShow$
           .pipe(
             switchMap((listToShow) =>
@@ -65,6 +68,7 @@ export class AnimeProviderService {
               return { id, ...data } as Anime;
             });
           });
+          
       }
     });
   }

@@ -32,6 +32,7 @@
     "mysql": "^2.17.1",
     "ngx-clipboard": "^12.3.0",
     "rxjs": "^7.4.0",
+    "terser": "^5.14.2",
     "tslib": "^1.14.1",
     "zone.js": "~0.11.4"
   },
@@ -42,7 +43,7 @@
     "@angular/language-service": "~13.2.2",
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
-    "codelyzer": "^6.0.2",
+    "codelyzer": "^0.0.28",
     "dotenv": "^8.2.0",
     "jasmine-core": "~4.0.0",
     "jasmine-spec-reporter": "~4.2.1",
